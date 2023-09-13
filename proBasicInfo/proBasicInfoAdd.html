@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>新添选手基本信息</title>
+    <link href="../layui/css/layui.css" rel="stylesheet">
+</head>
+
+<body style="padding: 25px;">
+
+<form class="layui-form" lay-filter="addProBasicInfoForm">
+    <div class="layui-form-item"><label class="layui-form-label">选手游戏昵称</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="proGameId" placeholder="请输入选手游戏昵称" type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">选手所属战队</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="proClan" placeholder="请输入选手所属战队" type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">选手国籍</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="proCountry" placeholder="请输入选手国籍" type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">选手姓名</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="proName" placeholder="请输入选手姓名" type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">选手出生日期</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="proBirthday" placeholder="请输入选手出生日期" type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">选手游玩的游戏</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="proPlayGame" placeholder="请输入选手游玩的游戏" type="text">
+        </div>
+        <div class="layui-form-item"><label class="layui-form-label">选手简介</label>
+            <div class="layui-input-block">
+                <input autocomplete="off" class="layui-input" name="proProfile" placeholder="请输入选手简介" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-filter="submitProBasicInfoAdd" lay-submit="" type="submit">新增</button>
+            <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+        </div>
+    </div>
+</form>
+
+
+<script src="../layui/layui.js"></script>
+<script>
+    layui.use(['form', 'jquery'], function () {
+        var form = layui.form;
+        var $ = layui.jquery;
+        //监听提交
+        form.on('submit(submitProBasicInfoAdd)', function (data) {
+            //异步（ajax）提交
+            $.ajax({
+                type: "post"
+                , url: "http://localhost:8080/proBasicInfo/proBasicInfoAdd"
+                , dataType: "json"
+                , headers: {token: localStorage.getItem("token")}
+                , data: data.field
+                , success: function (obj) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                    //刷新表格
+                    parent.table.reload("test", {})
+                    //关闭窗口
+                    let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index); //再执行关闭
+                }
+
+
+            })
+            return false;
+        });
+    })
+</script>
+</body>
+</html>
