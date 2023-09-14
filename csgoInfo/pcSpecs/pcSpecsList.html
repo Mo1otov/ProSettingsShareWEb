@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>职业选手基本信息列表</title>
-    <link href="../layui/css/layui.css" rel="stylesheet">
+    <title>外设信息列表</title>
+    <link href="../../layui/css/layui.css" rel="stylesheet">
 </head>
 
 <body>
@@ -15,11 +15,10 @@
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
         <button class="layui-btn layui-btn-sm" lay-event="edit">修改</button>
-        <button class="layui-btn layui-btn-sm" lay-event="search" style="background-color: #1e9fff">查看CSGO信息</button>
         <button class="layui-btn layui-btn-sm" lay-event="delete" style="background-color: red">删除</button>
     </div>
 </script>
-<script src="../layui/layui.js"></script>
+<script src="../../layui/layui.js"></script>
 <script>
     //弹出窗口填充数据的变量
     var row = null;
@@ -33,7 +32,7 @@
 
         table.render({
             elem: '#test'
-            , url: 'http://localhost:8080/proBasicInfo/getProBasicInfoList'
+            , url: 'http://localhost:8080/proCsgoPcSpecs/getProCsgoPcSpecsList'
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter']//控制显示哪个默认的工具栏按钮,默认三个
@@ -42,13 +41,11 @@
             , cols: [[
                 {type: 'checkbox'}
                 , {field: 'proId', title: '编号'}
-                , {field: 'proGameId',title: '游戏昵称'}
-                , {field: 'proClan', title: '所属战队'}
-                , {field: 'proCountry', title: '国籍'}
-                , {field: 'proName', title: '姓名'}
-                , {field: 'proBirthday', title: '生日'} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                , {field: 'proPlayGame', title: '参与的游戏'}
-                , {field: 'proProfile',  title: '简介'}
+                , {field: 'psProcessor',title: 'CPU'}
+                , {field: 'psGraphicsCard', title: '显卡'}
+                , {field: 'psMotherboard', title: '主板'}
+                , {field: 'psMicrophone', title: '麦克风'}
+                , {field: 'psWebcam', title: '摄像头'} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
             ]]
         });
 
@@ -68,7 +65,7 @@
                         //弹出窗口
                         layer.open({
                             type: 2 //此处以iframe举例
-                            , title: '修改选手基本信息'
+                            , title: '修改外设信息'
                             , area: ['450px', '500px']
                             , shade: 0.3   //背景透明度，取值范围0~1
                             , maxmin: true  //窗口是否允许最大化和最小化
@@ -76,14 +73,14 @@
                                 ($(window).height() - 450) / 2
                                 , ($(window).width() - 500) / 2
                             ]
-                            , content: 'proBasicInfoUpdate.html' //弹出窗口的页面内容
+                            , content: 'pcSpecsUpdate.html' //弹出窗口的页面内容
                         });
                     }
                     break;
                 case 'add':
                     layer.open({
                         type: 2 //此处以iframe举例
-                        , title: '新增选手基本信息'
+                        , title: '新增外设信息'
                         , area: ['450px', '500px']
                         , shade: 0.3   //背景透明度，取值范围0~1
                         , maxmin: true  //窗口是否允许最大化和最小化
@@ -91,12 +88,12 @@
                             ($(window).height() - 450) / 2
                             , ($(window).width() - 500) / 2
                         ]
-                        , content: 'proBasicInfoAdd.html' //弹出窗口的页面内容
+                        , content: 'pcSpecsAdd.html' //弹出窗口的页面内容
                     });
                     break;
                 case 'delete':
                     var data1 = checkStatus.data;
-                    if (data1.length == 0) {
+                    if (data1.length === 0) {
                         layer.msg("请选择要删除的行")
                     } else {
                         layer.confirm('确定要删除选中的行吗？', function (index) {
@@ -110,7 +107,7 @@
                             //do something
                             $.ajax({
                                 type: "post"
-                                , url: "http://localhost:8080/proBasicInfo/deleteProBasicInfo"
+                                , url: "http://localhost:8080/proCsgoPcSpecs/deleteProCsgoPcSpecsInfo"
                                 , dataType: "json"
                                 , headers: {token: localStorage.getItem("token")}
                                 , data: {

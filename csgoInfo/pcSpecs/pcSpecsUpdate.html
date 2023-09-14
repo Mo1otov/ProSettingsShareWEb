@@ -5,80 +5,66 @@
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>新添选手基本信息</title>
-    <link href="../layui/css/layui.css" rel="stylesheet">
+    <title>更新外设信息</title>
+    <link href="../../layui/css/layui.css" rel="stylesheet">
 </head>
 
 <body style="padding: 25px;">
 
-<form class="layui-form" lay-filter="addProBasicInfoForm">
-    <div class="layui-form-item"><label class="layui-form-label">游戏昵称</label>
+<form class="layui-form" lay-filter="updateProBasicInfoForm">
+    <!-- 用隐藏的输入框保存主键（客户编号），后台做更新时候要根据主键做update -->
+    <input name="proId" type="hidden"/>
+    <div class="layui-form-item"><label class="layui-form-label">CPU</label>
         <div class="layui-input-block">
             <input autocomplete="off" class="layui-input" name="proGameId" placeholder="请输入选手游戏昵称" type="text">
         </div>
     </div>
-    <div class="layui-form-item"><label class="layui-form-label">所属战队</label>
+    <div class="layui-form-item"><label class="layui-form-label">显卡</label>
         <div class="layui-input-block">
             <input autocomplete="off" class="layui-input" name="proClan" placeholder="请输入选手所属战队" type="text">
         </div>
     </div>
-    <div class="layui-form-item"><label class="layui-form-label">选手国籍</label>
+    <div class="layui-form-item"><label class="layui-form-label">主板</label>
         <div class="layui-input-block">
             <input autocomplete="off" class="layui-input" name="proCountry" placeholder="请输入选手国籍" type="text">
         </div>
     </div>
-    <div class="layui-form-item"><label class="layui-form-label">选手姓名</label>
+    <div class="layui-form-item"><label class="layui-form-label">麦克风</label>
         <div class="layui-input-block">
             <input autocomplete="off" class="layui-input" name="proName" placeholder="请输入选手姓名" type="text">
         </div>
     </div>
-    <div class="layui-inline"><label class="layui-form-label">出生日期</label>
+    <div class="layui-inline"><label class="layui-form-label">摄像头</label>
         <div class="layui-input-inline">
             <input type="text" name="proBirthday" class="layui-input" id="test5"
                    placeholder="yyyy-MM-dd">
         </div>
     </div>
-    <div class="layui-form-item"><label class="layui-form-label">参与的游戏</label>
-        <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" name="proPlayGame" placeholder="请输入选手游玩的游戏" type="text">
-        </div>
-    </div>
-    <div>
-        <div class="layui-form-item"><label class="layui-form-label">简介</label>
-            <div class="layui-input-block">
-                <input autocomplete="off" class="layui-input" name="proProfile" placeholder="请输入选手简介" type="text">
-            </div>
-        </div>
-    </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-filter="submitProBasicInfoAdd" lay-submit="" type="submit">新增</button>
+            <button class="layui-btn" lay-filter="submitProBasicInfoUpdate" lay-submit="" type="submit">修改</button>
             <button class="layui-btn layui-btn-primary" type="reset">重置</button>
         </div>
     </div>
 </form>
 
 
-<script src="../layui/layui.js"></script>
+<script src="../../layui/layui.js"></script>
 <script>
-    layui.use(['form', 'jquery','laydate'], function () {
+    layui.use(['form', 'jquery'], function () {
         var form = layui.form;
         var $ = layui.jquery;
-        let layDate = layui.laydate;
 
-        //日期时间选择器
-        layDate.render({
-            elem: '#test5'
-            , type: 'date'
-            , value: new Date()
-            , isInitValue: false //是否允许填充初始值，默认为 true
-        });
+        //给表单填充内容
+        form.val('updateProBasicInfoForm', parent.row);
+        console.log(parent.row)
         //监听提交
-        form.on('submit(submitProBasicInfoAdd)', function (data) {
+        form.on('submit(submitProBasicInfoUpdate)', function (data) {
+            console.log(data.field)
             //异步（ajax）提交
             $.ajax({
                 type: "post"
-                , url: "http://localhost:8080/proBasicInfo/addProBasicInfo"
+                , url: "http://localhost:8080/proBasicInfo/updateProBasicInfo"
                 , dataType: "json"
                 , headers: {token: localStorage.getItem("token")}
                 , data: data.field
@@ -89,13 +75,13 @@
                     let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                     parent.layer.close(index); //再执行关闭
                 }
-
-
             })
-
+            //避免页面因form的提交而刷新
             return false;
         });
+
     })
 </script>
 </body>
+
 </html>
