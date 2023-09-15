@@ -19,30 +19,36 @@
             </select>
         </div>
     </div>
+    <div class="layui-form-item"><label class="layui-form-label">游戏内ID</label>
+        <div class="layui-input-block">
+            <select name="proGameId" id="proGameId" lay-verify="required" lay-search="">
+                <option value="">直接选择或搜索选择</option>
+            </select>
+        </div>
+    </div>
     <div class="layui-form-item"><label class="layui-form-label">CPU</label>
         <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" name="proGameId" placeholder="请输入选手游戏昵称" type="text">
+            <input autocomplete="off" class="layui-input" name="psProcessor" placeholder="请输入该选手主机的CPU" type="text">
         </div>
     </div>
     <div class="layui-form-item"><label class="layui-form-label">显卡</label>
         <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" name="proClan" placeholder="请输入选手所属战队" type="text">
+            <input autocomplete="off" class="layui-input" name="psGraphicsCard" placeholder="请输入该选手主机的显卡" type="text">
         </div>
     </div>
     <div class="layui-form-item"><label class="layui-form-label">主板</label>
         <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" name="proCountry" placeholder="请输入选手国籍" type="text">
+            <input autocomplete="off" class="layui-input" name="psMotherboard" placeholder="请输入该选手主机的主板" type="text">
         </div>
     </div>
     <div class="layui-form-item"><label class="layui-form-label">麦克风</label>
         <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" name="proName" placeholder="请输入选手姓名" type="text">
+            <input autocomplete="off" class="layui-input" name="proMicrophone" placeholder="请输入该选手的麦克风" type="text">
         </div>
     </div>
-    <div class="layui-inline"><label class="layui-form-label">摄像头</label>
-        <div class="layui-input-inline">
-            <input type="text" name="proBirthday" class="layui-input" id="test5"
-                   placeholder="yyyy-MM-dd">
+    <div class="layui-form-item"><label class="layui-form-label">摄像头</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="proWebcam" placeholder="请输入该选手的摄像头" type="text">
         </div>
     </div>
     <div class="layui-form-item">
@@ -59,17 +65,35 @@
     layui.use(['form', 'jquery'], function () {
         var form = layui.form;
         var $ = layui.jquery;
-
         $.ajax({
             type: "get",
-            url: "http://localhost:8080/proCsgoPcSpecs/getProIdList",
+            url: "http://localhost:8080/proBasicInfo/getProBasicInfoList",
             headers: {
                 token: localStorage.getItem("token")
             },
             dataType: "json",
             success: function (obj) { //后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
-                for (let i = 0; i < obj.data.length; i++) {
-                    $("#proId").append('<option value="' + obj.data[i].proId + '">' + obj.data[i].proId + '</option>')
+                if ($('#proGameId').val() === "") {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        $("#proId").append('<option value="' + obj.data[i].proId + '">' + obj.data[i].proId + '</option>')
+                    }
+                } else {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        if (obj.data[i].proGameId === $('#proGameId').val()) {
+                            $("#proId").append('<option value="' + obj.data[i].proId + '">' + obj.data[i].proId + '</option>')
+                        }
+                    }
+                }
+                if ($('#proId').val() === "") {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        $("#proGameId").append('<option value="' + obj.data[i].proGameId + '">' + obj.data[i].proGameId + '</option>')
+                    }
+                } else {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        if (obj.data[i].proId === $('#proId').val()) {
+                            $("#proGameId").append('<option value="' + obj.data[i].proGameId + '">' + obj.data[i].proGameId + '</option>')
+                        }
+                    }
                 }
                 form.render();  //解决动态改变的标签没生效的问题
             }

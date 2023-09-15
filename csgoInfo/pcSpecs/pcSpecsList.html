@@ -41,6 +41,7 @@
             , cols: [[
                 {type: 'checkbox'}
                 , {field: 'proId', title: '编号'}
+                , {field: 'proGameId', title: '游戏ID'}
                 , {field: 'psProcessor',title: 'CPU'}
                 , {field: 'psGraphicsCard', title: '显卡'}
                 , {field: 'psMotherboard', title: '主板'}
@@ -120,25 +121,6 @@
                             })
                             layer.close(index);
                         });
-                    }
-                    break;
-                case 'contact':
-                    if (data.length == 0) {
-                        layer.msg("请选择要查看的行")
-                    } else if (data.length > 1) {
-                        layer.msg("一次只能查看一个客户")
-                    } else {
-                        window.location.href = '../contact/contactlist.html?cusId=' + data[0].cusId
-                    }
-                    break;
-
-                case 'businessrecord':
-                    if (data.length == 0) {
-                        layer.msg("请选择要查看的行")
-                    } else if (data.length > 1) {
-                        layer.msg("一次只能查看一个客户")
-                    } else {
-                        window.location.href = '../businessRecord/businessRecordList.html?cusId=' + data[0].cusId
                     }
                     break;
             }
