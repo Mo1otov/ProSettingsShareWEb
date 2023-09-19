@@ -2,9 +2,177 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="../../layui/css/layui.css" rel="stylesheet">
+    <title>新增选手准星信息</title>
 </head>
-<body>
+<body style="padding: 25px;">
 
+<form class="layui-form" lay-filter="addProCsgoCrosshairSettingsForm">
+    <div class="layui-form-item"><label class="layui-form-label">选手编号</label>
+        <div class="layui-input-block">
+            <select name="proId" id="proId" lay-verify="required" lay-search="">
+                <option value="">直接选择或搜索选择</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">游戏内ID</label>
+        <div class="layui-input-block">
+            <select name="proGameId" id="proGameId" lay-verify="required" lay-search="">
+                <option value="">直接选择或搜索选择</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">是否启用准星轮廓</label>
+        <div class="layui-input-block">
+            <select name="crDrawoutline">
+                <option value=""></option>
+                <option value="1">开启</option>
+                <option value="0">禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">准星前置选择</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="crAlpha" placeholder="请输入该选手的准星前置选择"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">准星颜色</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="crColor" placeholder="请输入该选手的准星颜色"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">准星蓝色数值</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="crBlue" placeholder="请输入该选手的准星蓝色数值"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">准星绿色数值</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="crGreen" placeholder="请输入该选手的准星绿色数值"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">准星红色数值</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="crRed" placeholder="请输入该选手的准星红色数值"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">准星是否启用中心点</label>
+        <div class="layui-input-block">
+            <select name="crDot">
+                <option value=""></option>
+                <option value="1">开启</option>
+                <option value="0">禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">准星间隙</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="crGap" placeholder="请输入该选手的准星间隙"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">准星大小</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="crSize" placeholder="请输入该选手的准星大小"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">准星风格</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="crStyle" placeholder="请输入该选手的准星风格"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">准星厚度</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="crThickness" placeholder="请输入该选手的准星厚度"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">开镜准星宽度</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="crSniperWidth" placeholder="请输入该选手的开镜准星宽度"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-filter="submitProCsgoCrosshairSettingsAdd" lay-submit="" type="submit">新增
+            </button>
+            <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+        </div>
+    </div>
+</form>
+
+
+<script src="../../layui/layui.js"></script>
+<script>
+    layui.use(['form', 'jquery'], function () {
+        var form = layui.form;
+        var $ = layui.jquery;
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8080/proBasicInfo/getProBasicInfoList",
+            headers: {
+                token: localStorage.getItem("token")
+            },
+            dataType: "json",
+            success: function (obj) { //后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                if ($('#proGameId').val() === "") {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        $("#proId").append('<option value="' + obj.data[i].proId + '">' + obj.data[i].proId + '</option>')
+                    }
+                } else {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        if (obj.data[i].proGameId === $('#proGameId').val()) {
+                            $("#proId").append('<option value="' + obj.data[i].proId + '">' + obj.data[i].proId + '</option>')
+                        }
+                    }
+                }
+                if ($('#proId').val() === "") {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        $("#proGameId").append('<option value="' + obj.data[i].proGameId + '">' + obj.data[i].proGameId + '</option>')
+                    }
+                } else {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        if (obj.data[i].proId === $('#proId').val()) {
+                            $("#proGameId").append('<option value="' + obj.data[i].proGameId + '">' + obj.data[i].proGameId + '</option>')
+                        }
+                    }
+                }
+                form.render();  //解决动态改变的标签没生效的问题
+            }
+        })
+        //监听提交
+        form.on('submit(submitProCsgoCrosshairSettingsAdd)', function (data) {
+            //异步（ajax）提交
+            $.ajax({
+                type: "post"
+                , url: "http://localhost:8080/proCsgoCrosshairSettings/addProCsgoCrosshairSettings"
+                , dataType: "json"
+                , headers: {token: localStorage.getItem("token")}
+                , data: data.field
+                , success: function (obj) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                    //刷新表格
+                    parent.table.reload("test", {})
+                    //关闭窗口
+                    let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index); //再执行关闭
+                }
+
+
+            })
+
+            return false;
+        });
+    })
+</script>
 </body>
 </html>

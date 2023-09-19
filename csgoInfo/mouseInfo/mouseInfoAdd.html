@@ -2,9 +2,159 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="../../layui/css/layui.css" rel="stylesheet">
+    <title>新增选手鼠标信息</title>
 </head>
-<body>
+<body style="padding: 25px;">
 
+<form class="layui-form" lay-filter="addProMouseInfoForm">
+    <div class="layui-form-item"><label class="layui-form-label">选手编号</label>
+        <div class="layui-input-block">
+            <select name="proId" id="proId" lay-verify="required" lay-search="">
+                <option value="">直接选择或搜索选择</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">游戏内ID</label>
+        <div class="layui-input-block">
+            <select name="proGameId" id="proGameId" lay-verify="required" lay-search="">
+                <option value="">直接选择或搜索选择</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">鼠标型号</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="msMouseModel" placeholder="请输入该选手的鼠标型号"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">鼠标dpi</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="msDpi" placeholder="请输入该选手的鼠标dpi"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">鼠标敏感度</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="msSensitivity" placeholder="请输入该选手的鼠标敏感度"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">鼠标edpi</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="msEdpi" placeholder="请输入该选手的鼠标edpi"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">鼠标开镜灵敏度</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="msZoomSensitivity" placeholder="请输入该选手的鼠标开镜灵敏度"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">鼠标轮询率</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="msHz" placeholder="请输入该选手的鼠标轮询率"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">windows桌面鼠标灵敏度</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" name="msWindowsSensitivity" placeholder="请输入该选手的windows桌面鼠标灵敏度"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">是否开启原始输入</label>
+        <div class="layui-input-block">
+            <select name="msRawInput">
+                <option value=""></option>
+                <option value="1">开启</option>
+                <option value="0">禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">是否开启鼠标加速</label>
+        <div class="layui-input-block">
+            <select name="msMouseAcceleration">
+                <option value=""></option>
+                <option value="1">开启</option>
+                <option value="0">禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-filter="submitProMouseInfoAdd" lay-submit="" type="submit">新增
+            </button>
+            <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+        </div>
+    </div>
+</form>
+
+
+<script src="../../layui/layui.js"></script>
+<script>
+    layui.use(['form', 'jquery'], function () {
+        var form = layui.form;
+        var $ = layui.jquery;
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8080/proBasicInfo/getProBasicInfoList",
+            headers: {
+                token: localStorage.getItem("token")
+            },
+            dataType: "json",
+            success: function (obj) { //后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                if ($('#proGameId').val() === "") {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        $("#proId").append('<option value="' + obj.data[i].proId + '">' + obj.data[i].proId + '</option>')
+                    }
+                } else {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        if (obj.data[i].proGameId === $('#proGameId').val()) {
+                            $("#proId").append('<option value="' + obj.data[i].proId + '">' + obj.data[i].proId + '</option>')
+                        }
+                    }
+                }
+                if ($('#proId').val() === "") {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        $("#proGameId").append('<option value="' + obj.data[i].proGameId + '">' + obj.data[i].proGameId + '</option>')
+                    }
+                } else {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        if (obj.data[i].proId === $('#proId').val()) {
+                            $("#proGameId").append('<option value="' + obj.data[i].proGameId + '">' + obj.data[i].proGameId + '</option>')
+                        }
+                    }
+                }
+                form.render();  //解决动态改变的标签没生效的问题
+            }
+        })
+        //监听提交
+        form.on('submit(submitProMouseInfoAdd)', function (data) {
+            //异步（ajax）提交
+            $.ajax({
+                type: "post"
+                , url: "http://localhost:8080/proMouseInfo/addProMouseInfo"
+                , dataType: "json"
+                , headers: {token: localStorage.getItem("token")}
+                , data: data.field
+                , success: function (obj) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                    //刷新表格
+                    parent.table.reload("test", {})
+                    //关闭窗口
+                    let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index); //再执行关闭
+                }
+
+
+            })
+
+            return false;
+        });
+    })
+</script>
 </body>
 </html>

@@ -2,9 +2,129 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>视频设置信息列表</title>
+    <link href="../../layui/css/layui.css" rel="stylesheet">
 </head>
 <body>
+<table class="layui-hide" id="test" lay-filter="test"></table>
+<script id="toolbarDemo" type="text/html">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
+        <button class="layui-btn layui-btn-sm" lay-event="edit">修改</button>
+        <button class="layui-btn layui-btn-sm" lay-event="delete" style="background-color: red">删除</button>
+    </div>
+</script>
+<script src="../../layui/layui.js"></script>
+<script>
+    //弹出窗口填充数据的变量
+    var row = null;
+    var table = null;
+    console.log(window.location.href)
 
+
+    layui.use(['table', 'jquery'], function () {
+        table = layui.table;
+        var $ = layui.jquery;
+
+        table.render({
+            elem: '#test'
+            , url: 'http://localhost:8080/proCsgoVideoSettings/getProCsgoVideoSettingsList'
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['filter']//控制显示哪个默认的工具栏按钮,默认三个
+            , page: true
+            , headers: {token: localStorage.getItem("token")}
+            , cols: [[
+                {type: 'checkbox'}
+                , {field: 'proId', title: '编号'}
+                , {field: 'proGameId', title: '游戏ID'}
+                , {field: 'videoResolution', title: '游戏内分辨率'}
+                , {field: 'videoAspectRatio', title: '游戏画面比例'}
+                , {field: 'videoScalingMode', title: '游戏画面缩放模式'}
+                , {field: 'videoColorMode', title: '游戏画面颜色模式'}
+                , {field: 'videoBrightness', title: '游戏画面亮度'} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                , {field: 'videoDisplayMode', title: '游戏画面显示模式'}
+            ]]
+        });
+
+        //头工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            var data = checkStatus.data;
+            switch (obj.event) {
+                case 'edit':
+                    //选中行的数据的数组
+                    if (data.length === 0) {
+                        layer.msg("请选择要修改的行")
+                    } else if (data.length > 1) {
+                        layer.msg("一次只能修改一行数据")
+                    } else {
+                        row = data[0]  //把选中行对象赋给row变量
+                        //弹出窗口
+                        layer.open({
+                            type: 2 //此处以iframe举例
+                            , title: '修改选手视频设置信息'
+                            , area: ['450px', '500px']
+                            , shade: 0.3   //背景透明度，取值范围0~1
+                            , maxmin: true  //窗口是否允许最大化和最小化
+                            , offset: [ //居中显示
+                                ($(window).height() - 450) / 2
+                                , ($(window).width() - 500) / 2
+                            ]
+                            , content: 'videoSettingsUpdate.html' //弹出窗口的页面内容
+                        });
+                    }
+                    break;
+                case 'add':
+                    layer.open({
+                        type: 2 //此处以iframe举例
+                        , title: '新增选手鼠视频设置信息'
+                        , area: ['500px', '500px']
+                        , shade: 0.3   //背景透明度，取值范围0~1
+                        , maxmin: true  //窗口是否允许最大化和最小化
+                        , offset: [ //居中显示
+                            ($(window).height() - 500) / 2
+                            , ($(window).width() - 500) / 2
+                        ]
+                        , content: 'videoSettingsAdd.html' //弹出窗口的页面内容
+                    });
+                    break;
+                case 'delete':
+                    var data1 = checkStatus.data;
+                    if (data1.length === 0) {
+                        layer.msg("请选择要删除的行")
+                    } else {
+                        layer.confirm('确定要删除选中的行吗？', function (index) {
+                            //把选中数据的id保存为一个数组，用于提交给后台
+
+                            let arr = []
+                            for (let i = 0; i < data1.length; i++) {
+                                let proIds = data1[i].proId
+                                arr.push(proIds)
+                            }
+                            //do something
+                            $.ajax({
+                                type: "post"
+                                , url: "http://localhost:8080/proCsgoVideoSettings/deleteProCsgoVideoSettings"
+                                , dataType: "json"
+                                , headers: {token: localStorage.getItem("token")}
+                                , data: {
+                                    ids: arr.join(",")//使用join方法把数组元素用","拼接为字符串，结果如“1，3，5”
+                                }
+                                , success: function (obj) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                                    //刷新表格
+                                    table.reload("test", {})
+                                }
+                            })
+                            layer.close(index);
+                        });
+                    }
+                    break;
+            }
+        })
+    })
+</script>
 </body>
 </html>
