@@ -2,9 +2,234 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="../../layui/css/layui.css" rel="stylesheet">
+    <title>新增选手高级视频设置信息</title>
 </head>
-<body>
+<body style="padding: 25px;">
 
+<form class="layui-form" lay-filter="addProCsgoAdvancedVideoSettingsForm">
+    <div class="layui-form-item"><label class="layui-form-label">选手编号</label>
+        <div class="layui-input-block">
+            <select name="proId" id="proId" lay-verify="required" lay-search="">
+                <option value="">直接选择或搜索选择</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">游戏内ID</label>
+        <div class="layui-input-block">
+            <select name="proGameId" id="proGameId" lay-verify="required" lay-search="">
+                <option value="">直接选择或搜索选择</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">全局阴影质量</label>
+        <div class="layui-input-block">
+            <select name="avGlobalShadowQuality">
+                <option value=""></option>
+                <option value="非常低">非常低</option>
+                <option value="低">低</option>
+                <option value="中">中</option>
+                <option value="高">高</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">纹理细节</label>
+        <div class="layui-input-block">
+            <select name="avTextureDetail">
+                <option value=""></option>
+                <option value="低">低</option>
+                <option value="中">中</option>
+                <option value="高">高</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">纹理流送</label>
+        <div class="layui-input-block">
+            <select name="avTextureStreaming">
+                <option value=""></option>
+                <option value="开启">开启</option>
+                <option value="禁用">禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">效果细节</label>
+        <div class="layui-input-block">
+            <select name="avEffectDetail">
+                <option value=""></option>
+                <option value="低">低</option>
+                <option value="中">中</option>
+                <option value="高">高</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">光影细节</label>
+        <div class="layui-input-block">
+            <select name="avShaderDetail">
+                <option value=""></option>
+                <option value="低">低</option>
+                <option value="中">中</option>
+                <option value="高">高</option>
+                <option value="非常高">非常高</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">增强玩家对比度</label>
+        <div class="layui-input-block">
+            <select name="avBoostPlayerContrast">
+                <option value=""></option>
+                <option value="开启">开启</option>
+                <option value="禁用">禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">多核优化</label>
+        <div class="layui-input-block">
+            <select name="avMulticoreRendering">
+                <option value=""></option>
+                <option value="已启用">已启用</option>
+                <option value="已禁用">已禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">多重采样抗锯齿模式</label>
+        <div class="layui-input-block">
+            <select name="avMultisamplingAntiAliasingMode">
+                <option value=""></option>
+                <option value="关闭">关闭</option>
+                <option value="2×MXAA">2×MXAA</option>
+                <option value="4×MXAA">4×MXAA</option>
+                <option value="8×MXAA">8×MXAA</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">快速近似抗锯齿</label>
+        <div class="layui-input-block">
+            <select name="avFxaaAntiAliasing">
+                <option value=""></option>
+                <option value="已启用">已启用</option>
+                <option value="已禁用">已禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">贴图过滤模式</label>
+        <div class="layui-input-block">
+            <select name="avTextureFilteringMode">
+                <option value=""></option>
+                <option value="三线性">三线性</option>
+                <option value="双线性">双线性</option>
+                <option value="关闭">关闭</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">等待垂直同步</label>
+        <div class="layui-input-block">
+            <select name="avWaitForVerticalSync">
+                <option value=""></option>
+                <option value="已启用">已启用</option>
+                <option value="已禁用">已禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">动态模糊</label>
+        <div class="layui-input-block">
+            <select name="avMotionBlur">
+                <option value=""></option>
+                <option value="已启用">已启用</option>
+                <option value="已禁用">已禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">启用三倍显示器模式</label>
+        <div class="layui-input-block">
+            <select name="avTripleMonitorMode">
+                <option value=""></option>
+                <option value="已启用">已启用</option>
+                <option value="已禁用">已禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">使用Uber着色器</label>
+        <div class="layui-input-block">
+            <select name="avUseUberShaders">
+                <option value=""></option>
+                <option value="已启用">已启用</option>
+                <option value="已禁用">已禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-filter="submitProCsgoAdvancedVideoSettingsAdd" lay-submit="" type="submit">新增
+            </button>
+            <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+        </div>
+    </div>
+</form>
+
+
+<script src="../../layui/layui.js"></script>
+<script>
+    layui.use(['form', 'jquery'], function () {
+        var form = layui.form;
+        var $ = layui.jquery;
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8080/proCsgoAdvancedVideoSettings/getIds",
+            headers: {
+                token: localStorage.getItem("token")
+            },
+            dataType: "json",
+            success: function (obj) { //后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                if ($('#proGameId').val() === "") {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        $("#proId").append('<option value="' + obj.data[i].proId + '">' + obj.data[i].proId + '</option>')
+                    }
+                } else {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        if (obj.data[i].proGameId === $('#proGameId').val()) {
+                            $("#proId").append('<option value="' + obj.data[i].proId + '">' + obj.data[i].proId + '</option>')
+                        }
+                    }
+                }
+                if ($('#proId').val() === "") {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        $("#proGameId").append('<option value="' + obj.data[i].proGameId + '">' + obj.data[i].proGameId + '</option>')
+                    }
+                } else {
+                    for (let i = 0; i < obj.data.length; i++) {
+                        if (obj.data[i].proId === $('#proId').val()) {
+                            $("#proGameId").append('<option value="' + obj.data[i].proGameId + '">' + obj.data[i].proGameId + '</option>')
+                        }
+                    }
+                }
+                form.render();  //解决动态改变的标签没生效的问题
+            }
+        })
+        //监听提交
+        form.on('submit(submitProCsgoAdvancedVideoSettingsAdd)', function (data) {
+            //异步（ajax）提交
+            $.ajax({
+                type: "post"
+                , url: "http://localhost:8080/proCsgoAdvancedVideoSettings/addProCsgoAdvancedVideoSettings"
+                , dataType: "json"
+                , headers: {token: localStorage.getItem("token")}
+                , data: data.field
+                , success: function (obj) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                    //刷新表格
+                    parent.table.reload("test", {})
+                    //关闭窗口
+                    let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index); //再执行关闭
+                }
+
+
+            })
+
+            return false;
+        });
+    })
+</script>
 </body>
 </html>
