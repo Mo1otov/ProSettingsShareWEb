@@ -29,12 +29,6 @@
             background-color: cadetblue;
         }
     </style>
-
-    <script>
-        // if (localStorage.getItem("token") == undefined) {
-        //     window.location.href = "adminLogin.html"
-        // }
-    </script>
 </head>
 
 <body>
@@ -44,17 +38,17 @@
         <!-- 头部区域（可配合layui 已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <!-- 移动端显示 -->
-            <li style="font-size: 24px;line-height: 60px">CRM客户关系管理系统</li>
+            <li style="font-size: 24px;line-height: 60px">ProSettings后台数据管理系统</li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item layui-hide layui-show-md-inline-block">
                 <a href="javascript:;">
                     <!-- <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img"> -->
-                    <span id="userName"></span>
+                    <span id="accountName"></span>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">用户信息</a></dd>
-                    <dd><a href="javascript:localStorage.clear();location.href='login.html'">退出</a></dd>
+                    <dd><a href="javascript:localStorage.clear();location.href='adminLogin.html'">退出</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
@@ -96,7 +90,7 @@
                 <li class="layui-nav-item">
                     <a href="javascript:" style="color: #0c0c0c">系统管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="systemManagement/user.html" style="color: #0c0c0c"
+                        <dd><a href="systemManagement/AdminList.html" style="color: #0c0c0c"
                                target="content">管理员用户管理</a></dd>
                     </dl>
                 </li>
@@ -113,7 +107,7 @@
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        <div style="color: midnightblue;text-align: center">@重庆理工版权所有</div>
+        <div style="color: midnightblue;text-align: center">@Mo1otov版权所有</div>
     </div>
 </div>
 <script src="./layui/layui.js"></script>
@@ -145,39 +139,7 @@
                 });
             }
         });
-        $("#userName").text(localStorage.getItem("suName"))
-
-        $.ajax({
-            type: "get"
-            , url: "http://localhost:8080/customerLoss/getCustomerLossrep"
-            , dataType: "json"
-            , headers: {token: localStorage.getItem("token")}
-
-            , success: function (obj) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
-                console.log(obj.obj)
-                if (obj.obj > 0) {
-                    layer.open({
-                        type: 1
-                        , title: false //不显示标题栏
-                        , closeBtn: false
-                        , area: '300px;'
-                        , shade: 0.8
-                        , id: 'LAY_layuipro' //设定一个id，防止重复弹出
-                        , btn: ['马上处理', '稍后处理']
-                        , btnAlign: 'c'
-                        , moveType: 1 //拖拽模式，0或者1
-                        , content: '你的客户正在流失!!!!!!!!!'
-                        , success: function (layero) {
-                            var btn = layero.find('.layui-layer-btn');
-                            btn.find('.layui-layer-btn0').attr({
-                                href: 'customerloss/customerlosslist.html'
-                                , target: 'content'
-                            });
-                        }
-                    });
-                }
-            }
-        })
+        $("#accountName").text(localStorage.getItem("accountName"))
     });
 
 </script>

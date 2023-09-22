@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>用户信息表</title>
+    <title>管理员信息表</title>
     <link rel="stylesheet" href="../layui/css/layui.css" media="all">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
         <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="update">修改</button>
-        <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del">删除</button>
+        <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete">删除</button>
     </div>
 </script>
 <script src="../layui/layui.js" charset="utf-8"></script>
@@ -25,30 +25,26 @@
 
         table.render({
             elem: '#test'
-            , url: 'http://localhost:8080/sysUser/list'
+            , url: 'http://localhost:8080/sysAdmin/getSysAdminList'
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , page: true//开启分页
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-            , title: '服务信息表'
+            , title: '管理员信息表'
             , headers: {
                 token: localStorage.getItem("token")
             }
             , cols: [[
                 {type: 'checkbox'}
-                , {field: 'suId', title: '用户ID', align: 'center', sort: true}
-                , {field: 'suName', title: '用户名', align: 'center', sort: true}
-                , {field: 'suPwd', title: '用户密码', sort: true, align: 'center'}
+                , {field: 'accountId', title: '管理员ID', align: 'center', sort: true}
+                , {field: 'accountName', title: '管理员名称', align: 'center', sort: true}
+                , {field: 'accountPassword', title: '管理员密码', sort: true, align: 'center'}
                 , {
-                    field: 'suRole', title: '用户角色', align: 'center', templet: function (d) {
-                        switch (d.suRole) {
+                    field: 'accountRole', title: '管理员角色', align: 'center', templet: function (d) {
+                        switch (d.accountRole) {
                             case "ADMIN":
-                                return "超级管理员"
-                            case "SALES":
-                                return "销售员"
-                            case "MANAGER":
-                                return "高管"
-                            case "SUPERVISOR":
-                                return "销售主管"
+                                return "管理员"
+                            case "EXECUTIVE":
+                                return "高级管理员"
                         }
                     }
                 }
@@ -63,7 +59,7 @@
                         layer.open({
                             type: 2 //此处以iframe举例
                             ,
-                            title: '新增用户'
+                            title: '新增管理员'
                             ,
                             area: ['450px', '300px'],
                             shade: 0.15//背景透明度，取值范围:0-1
@@ -73,7 +69,7 @@
                                 , ($(window).width() - 390) / 2
                             ]
                             ,
-                            content: 'createUser.html'//弹出窗口的内容
+                            content: 'addAdmin.html'//弹出窗口的内容
                         });
                         break;
                     case 'update':
@@ -82,7 +78,7 @@
                             layer.open({
                                 type: 2 //此处以iframe举例
                                 ,
-                                title: '更新用户'
+                                title: '更新管理员'
                                 ,
                                 area: ['390px', '450px'],
                                 shade: 0.15//背景透明度，取值范围:0-1
@@ -92,7 +88,7 @@
                                     , ($(window).width() - 390) / 2
                                 ]
                                 ,
-                                content: 'updateUser.html'//弹出窗口的内容
+                                content: 'updateAdmin.html'//弹出窗口的内容
                             });
                         } else if (data.length === 0) {
                             layer.msg("选中要修改的行")
@@ -101,24 +97,38 @@
                         }
 
                         break;
-                    case 'del':
-                        if (data.length === 1) {
-                            $.ajax({
-                                type: "delete"
-                                , url: `http://localhost:8080/sysUser/del?id=${data[0].suId}`
-                                , headers: {
-                                    token: localStorage.getItem("token")
-                                }
-                                , success: function (obj) {//后台方法成功执行并返回结果时，会调用这个方法，参数就是后台返回的内容
-                                    //刷新表格
-                                    table.reload('test');
-                                },
-                                error: function (obj) {
-                                    alert("删除失败")
-                                }
-                            })
+                    case 'delete':
+                        var data1 = checkStatus.data;
+                        if (data1.length === 0) {
+                            layer.msg("请选择要删除的行")
                         } else {
-                            layer.msg("选中要删除的行")
+                            layer.confirm('确定要删除选中的行吗？', function (index) {
+                                //把选中数据的id保存为一个数组，用于提交给后台
+
+                                let arr = []
+                                for (let i = 0; i < data1.length; i++) {
+                                    let proIds = data1[i].accountId
+                                    arr.push(proIds)
+                                }
+                                //do something
+                                $.ajax({
+                                    type: "post"
+                                    , url: "http://localhost:8080/sysAdmin/deleteSysAdmin"
+                                    , dataType: "json"
+                                    , headers: {token: localStorage.getItem("token")}
+                                    , data: {
+                                        ids: arr.join(",")//使用join方法把数组元素用","拼接为字符串，结果如“1，3，5”
+                                    }
+                                    , success: function (obj) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                                        //刷新表格
+                                        table.reload("test", {})
+                                    }
+                                    , error: function (obj) {
+                                        alert("删除失败")
+                                    }
+                                })
+                                layer.close(index);
+                            });
                         }
                         break;
                 }

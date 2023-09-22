@@ -52,18 +52,14 @@
     <div>
         <div class="loginbox-title">登录</div>
         <div class="layui-form-item input-item">
-            <input autocomplete="off" class="layui-input" id="username" placeholder="请输入用户名" type="text">
+            <input autocomplete="off" class="layui-input" id="accountName" placeholder="请输入用户名" type="text">
         </div>
         <div class="layui-form-item input-item">
-            <input autocomplete="off" class="layui-input" id="password" placeholder="请输入密码" type="password">
+            <input autocomplete="off" class="layui-input" id="accountPassword" placeholder="请输入密码" type="password">
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-filter="login" lay-submit style="width:45%">登录</button>
-                <button class="layui-btn" id="registerbtn" lay-filter="register" lay-submit style="width:45%"><a
-                        href="register.html" style="color: white">注册</a>
-                </button>
-
             </div>
         </div>
 
@@ -80,17 +76,17 @@
         form.on('submit(login)', function (data) {
             $.ajax({
                 type: "post",
-                url: "http://localhost:8080/sysUser/login",
+                url: "http://localhost:8080/sysAdmin/login",
                 dataType: "json",
                 data: {
-                    suName: $("#username").val(),
-                    suPwd: $("#password").val()
+                    accountName: $("#accountName").val(),
+                    accountPassword: $("#accountPassword").val()
                 },
                 success: function (obj) {
-                    if (obj.code == 0) {
+                    if (obj.code === 0) {
                         localStorage.setItem("token", obj.msg);
-                        localStorage.setItem("suName", obj.obj.suName)
-                        location.href = "index.html"
+                        localStorage.setItem("accountName", obj.obj.accountName)
+                        location.href = "adminIndex.html"
                     } else {
                         layer.msg(obj.msg)
                     }
