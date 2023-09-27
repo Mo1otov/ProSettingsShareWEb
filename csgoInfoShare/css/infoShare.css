@@ -2,7 +2,8 @@ body p {
     margin: 0
 }
 
-.player-bio {
+.proBasicInfo {
+    margin-top: 20px;
     display: flex;
     flex-direction: row-reverse;
     align-items: flex-start;
@@ -13,7 +14,7 @@ body p {
     position: relative;
 }
 
-.player-bio .intro {
+.proBasicInfo .info {
     padding: 21px 0 18px 42px;
     display: flex;
     flex-direction: column;
@@ -21,19 +22,19 @@ body p {
     margin-bottom: 0
 }
 
-.player-bio .intro .name {
+.proBasicInfo .info .name {
     display: flex;
     align-items: center
 }
 
-.player-bio .intro .name h1 {
+.proBasicInfo .info .name h1 {
     margin: 0;
     color: #132037;
     font-size: 28px;
     line-height: 36px;
 }
 
-.player-bio .intro .content {
+.proBasicInfo .info .profile {
     font-family: sans-serif;
     font-size: 13px;
     line-height: 22px;
@@ -45,11 +46,11 @@ body p {
     position: relative
 }
 
-.player-bio .intro .content p {
+.proBasicInfo .info .profile p {
     display: inline
 }
 
-.player-bio .avatar {
+.proBasicInfo .picture {
     flex: 0 0 200px;
     position: relative;
     padding: 0;
@@ -64,27 +65,26 @@ section span {
     font-family: sans-serif;
 }
 
-.cta-boxes--list {
+.equipmentBoxes {
     display: flex;
     flex-wrap: wrap;
     margin-right: -14px
 }
 
-.cta-boxes--list .cta-box {
+.equipmentBoxes .equipmentBox {
     margin-right: 14px;
     margin-bottom: 23px
 }
 
-.cta-box {
+.equipmentBox {
     display: flex;
     flex-direction: column-reverse;
     justify-content: flex-end;
     position: relative;
     z-index: 0;
-    cursor: pointer
 }
 
-.cta-box__tag {
+.equipmentTag {
     position: absolute;
     background: #132037;
     height: 24px;
@@ -98,14 +98,14 @@ section span {
     text-transform: capitalize
 }
 
-.cta-box__tag--top-right {
+.equipmentTag {
     top: 0;
     right: 0;
     border-top-right-radius: 8px;
     border-bottom-left-radius: 8px
 }
 
-.cta-box_heading-wrapper {
+.equipmentImg {
     background-color: #F2F4F7;
     padding: 15px;
     border-radius: 8px;
@@ -119,24 +119,24 @@ section span {
     order: 3
 }
 
-.cta-box h4 {
+.equipmentBox h4 {
     margin: 0;
     font-size: 14px;
     line-height: 20px;
     order: 2
 }
 
-.cta-box h4 a {
+.equipmentBox h4 a {
     color: #132037;
     text-decoration: none;
 }
 
-.cta-box h4 a:hover {
+.equipmentBox h4 a:hover {
     color: #5098d5;
     text-decoration: none
 }
 
-.cta-box--cta .cta-box_heading-wrapper {
+.cta-box--cta .equipmentImg {
     position: relative;
     flex: initial;
     height: auto;
@@ -144,10 +144,9 @@ section span {
     margin: 0;
     box-sizing: border-box;
     padding-top: 0;
-    pointer-events: none
 }
 
-.cta-box--cta .cta-box_heading-wrapper span {
+.cta-box--cta .equipmentImg span {
     position: absolute;
     bottom: 20px;
     left: 20px;
@@ -167,12 +166,10 @@ section {
     padding: 30px;
     min-width: 0;
     border-radius: 8px;
-    -webkit-box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .03);
-    -moz-box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .03);
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .03)
 }
 
-section.section--child {
+section.videoSettings_child,.advancedVideoSettings_child {
     width: 100%;
     margin: 0
 }
@@ -216,8 +213,6 @@ table.settings > tbody:after {
 
 
 table.settings > tbody tr {
-    -webkit-flex: 0 1 25%;
-    -ms-flex: 0 1 25%;
     flex: 0 1 25%;
     position: relative;
     padding-bottom: 10px;
