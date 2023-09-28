@@ -5,126 +5,40 @@
     <title>首页</title>
     <link href="../layui/css/layui.css" media="all" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="../layui/layui.js"></script>
 </head>
 <body>
-<div class="container">
-    <div class="infoBox">
-    <a href="infoShare.html">
-        <div class="contentbox">
-            <div class="imgBx">
-                <img src="imgs/s1mple.png" alt="">
-            </div>
-            <div class="textBox">
-                <h3>s1mple</h3>
-                <h4>Natus Vincere</h4>
-            </div>
-        </div>
-    </a>
-    </div>
-    <div class="infoBox">
-        <a href="#">
-            <div class="contentbox">
-                <div class="imgBx">
-                    <img src="imgs/s1mple.png">
-                </div>
-                <div class="textBox">
-                    <h3>s1mple</h3>
-                    <h4>Natus Vincere</h4>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="infoBox">
-        <a href="#">
-            <div class="contentbox">
-                <div class="imgBx">
-                    <img src="imgs/s1mple.png">
-                </div>
-                <div class="textBox">
-                    <h3>s1mple</h3>
-                    <h4>Natus Vincere</h4>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="infoBox">
-        <a href="#">
-            <div class="contentbox">
-                <div class="imgBx">
-                    <img src="imgs/s1mple.png">
-                </div>
-                <div class="textBox">
-                    <h3>s1mple</h3>
-                    <h4>Natus Vincere</h4>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="infoBox">
-        <a href="#">
-            <div class="contentbox">
-                <div class="imgBx">
-                    <img src="imgs/s1mple.png">
-                </div>
-                <div class="textBox">
-                    <h3>s1mple</h3>
-                    <h4>Natus Vincere</h4>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="infoBox">
-        <a href="#">
-            <div class="contentbox">
-                <div class="imgBx">
-                    <img src="imgs/s1mple.png">
-                </div>
-                <div class="textBox">
-                    <h3>s1mple</h3>
-                    <h4>Natus Vincere</h4>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="infoBox">
-        <a href="#">
-            <div class="contentbox">
-                <div class="imgBx">
-                    <img src="imgs/s1mple.png">
-                </div>
-                <div class="textBox">
-                    <h3>s1mple</h3>
-                    <h4>Natus Vincere</h4>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="infoBox">
-        <a href="#">
-            <div class="contentbox">
-                <div class="imgBx">
-                    <img src="imgs/s1mple.png">
-                </div>
-                <div class="textBox">
-                    <h3>s1mple</h3>
-                    <h4>Natus Vincere</h4>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="infoBox">
-        <a href="#">
-            <div class="contentbox">
-                <div class="imgBx">
-                    <img src="imgs/s1mple.png">
-                </div>
-                <div class="textBox">
-                    <h3>s1mple</h3>
-                    <h4>Natus Vincere</h4>
-                </div>
-            </div>
-        </a>
-    </div>
+<div class="container" id="container">
 </div>
+<script type="text/javascript">
+    layui.use("jquery")
+    var $ = layui.jquery;
+    $.ajax({
+        type: "GET"
+        , url: "http://localhost:8080/proBasicInfo/getProBasicInfoList"
+        , dataType: "json"
+        , headers: {token: localStorage.getItem("token")}
+        , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+            for (let i = 0; i < data.data.length; i++) {
+                $('#container').append(' <div class="infoBox">\n' +
+                    '    <a id="proInfo" href="infoShare.html?proId='+data.data[i].proId+'">\n' +
+                    '        <div class="contentbox">\n' +
+                    '            <div class="imgBx">\n' +
+                    '                <img id="proImg" src="imgs/s1mple.png" alt="">\n' +
+                    '            </div>\n' +
+                    '            <div class="textBox">\n' +
+                    '                <h3 id="proName">'+data.data[i].proGameId+'</h3>\n' +
+                    '                <h4 id="proTeam">'+data.data[i].proClan+'</h4>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '    </a>\n' +
+                    '    </div>')
+            }
+        }
+        , error: function (obj) {
+            console.log("请求失败")
+        }
+    })
+</script>
 </body>
 </html>

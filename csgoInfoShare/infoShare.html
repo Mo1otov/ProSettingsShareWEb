@@ -4,315 +4,45 @@
     <meta charset="UTF-8">
     <title>s1mple</title>
     <link href="css/infoShare.css" rel="stylesheet">
+    <script src="../layui/layui.js"></script>
 </head>
 <body style="width: 60%;margin: 0 auto">
-<div id="bio" class="proBasicInfo">
-    <section class="info">
-        <div class="info_data">
-            <div class="name">
-                <h1>s1mple</h1>
-            </div>
-            <table class="data">
-                <tbody>
-                <tr class="proName">
-                    <th>姓名</th>
-                    <td>Oleksandr Kostyliev</td>
-                </tr>
-                <tr class="proBirthday">
-                    <th>出生日期</th>
-                    <td>October 2, 1997</td>
-                </tr>
-                <tr class="proCountry">
-                    <th>国籍</th>
-                    <td>Ukraine</td>
-                </tr>
-                <tr class="proTeam">
-                    <th>所属战队</th>
-                    <td>Natus Vincere</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="profile">
-            <p>Oleksandr "s1mple" Kostyliev 出生于 1997 年 10 月 2 日，目前是 Natus Vincere 的一名选手。
-                s1mple 被许多人认为是有史以来最优秀的 CS:GO 玩家，他的许多成就和奖杯证明了这一点。
-                他的许多成就和奖杯都证明了这一点。他的战队赢得过一次 Major 赛事、一次英特尔大满贯赛和许多顶级
-                而他的个人荣誉则包括 20 多枚 HLTV MVP 奖牌，以及 HLTV "最佳选手 "第一名。
-                在 HLTV 的 "年度最佳选手 "榜单中名列第一。他曾在 2019 年和 2020 年获得亚军。
-            <p>s1mple 曾效力于许多战队，包括 Liquid、FlipSid3 和 HellRaisers，但他在 Natus Vincere 赢得的最多比赛是
-                他于 2016 年 8 月加入 Natus Vincere。</p>
-        </div>
-    </section>
-    <section class="picture">
-        <img src="imgs/s1mple.png"
-             alt="s1mple"
-             height="240" width="240">
-    </section>
+<div id="proBasicInfo" class="proBasicInfo">
 </div>
 <div id="games" class="games">
     <div id="csgo-settings" class="csgo">
         <h2 style="text-align: center">-CS:GO设置-</h2>
         <section id="mouseSettingsInfo" class="mouseSettingsInfo">
             <h3>鼠标参数</h3>
-            <table class="settings">
-                <tbody>
-                <tr class="dpi" data-field="dpi">
-                    <th>DPI</th>
-                    <td>400</td>
-                </tr>
-                <tr class="sensitivity" data-field="sensitivity">
-                    <th>敏感度</th>
-                    <td>3.09</td>
-                </tr>
-                <tr class="edpi" data-field="edpi">
-                    <th>eDPI</th>
-                    <td>1236</td>
-                </tr>
-                <tr class="zoomSensitivity" data-field="zoomSensitivity">
-                    <th>开镜灵敏度</th>
-                    <td>1</td>
-                </tr>
-                <tr class="hz" data-field="hz">
-                    <th>轮询率</th>
-                    <td>1000</td>
-                </tr>
-                <tr class="windowsSensitivity" data-field="windowsSensitivity">
-                    <th>Windows桌面灵敏度</th>
-                    <td>6</td>
-                </tr>
-                <tr class="rawInput" data-field="RawInput">
-                    <th>原始输入</th>
-                    <td>开启</td>
-                </tr>
-                <tr class="acceleration" data-field="acceleration">
-                    <th>鼠标加速</th>
-                    <td>禁用</td>
-                </tr>
-                </tbody>
+            <table class="settings" id="mouseSettings">
             </table>
         </section>
         <section id="crossHair" class="crossHair">
             <h3>准星参数</h3>
-            <table class="settings">
-                <tbody>
-                <tr class="drawOutLine" data-field="drawOutLine">
-                    <th>准星轮廓</th>
-                    <td>禁用</td>
-                </tr>
-                <tr class="alpha" data-field="alpha">
-                    <th>Alpha</th>
-                    <td>255</td>
-                </tr>
-                <tr class="format-number field-color" data-field="cl_crosshaircolor">
-                    <th>颜色</th>
-                    <td>4</td>
-                </tr>
-                <tr class="blue" data-field="blue">
-                    <th>蓝色</th>
-                    <td>144</td>
-                </tr>
-                <tr class="green" data-field="green">
-                    <th>绿色</th>
-                    <td>238</td>
-                </tr>
-                <tr class="red" data-field="red">
-                    <th>红色</th>
-                    <td>0</td>
-                </tr>
-                <tr class="dot" data-field="dot">
-                    <th>中心点</th>
-                    <td>禁用</td>
-                </tr>
-                <tr class="gap" data-field="gap">
-                    <th>间隙</th>
-                    <td>-3</td>
-                </tr>
-                <tr class="size" data-field="size">
-                    <th>大小</th>
-                    <td>2</td>
-                </tr>
-                <tr class="style" data-field="style">
-                    <th>样式</th>
-                    <td>4</td>
-                </tr>
-                <tr class="thickness" data-field="thickness">
-                    <th>厚度</th>
-                    <td>0</td>
-                </tr>
-                <tr class="sniperWidth" data-field="sniperWidth">
-                    <th>开镜准星宽度</th>
-                    <td>1</td>
-                </tr>
-                </tbody>
+            <table class="settings" id="crossHairSettings">
             </table>
         </section>
         <section id="viewModel" class="viewModel">
             <h3>持枪视角参数</h3>
-            <table class="settings">
-                <tbody>
-                <tr class="fov" data-field="fov">
-                    <th>FOV</th>
-                    <td>68</td>
-                </tr>
-                <tr class="offsetX" data-field="offsetX">
-                    <th>Offset X</th>
-                    <td>2.5</td>
-                </tr>
-                <tr class="offsetY" data-field="offsetY">
-                    <th>Offset Y</th>
-                    <td>0</td>
-                </tr>
-                <tr class="offsetZ" data-field="offsetZ">
-                    <th>Offset Z</th>
-                    <td>-1.5</td>
-                </tr>
-                <tr class="presetPos" data-field="presetPos">
-                    <th>持枪视角</th>
-                    <td>3</td>
-                </tr>
-                <tr class="shiftLeftAmt" data-field="shiftLeftAmt">
-                    <th>Shift Left Amt</th>
-                    <td>1.5</td>
-                </tr>
-                <tr class="shiftRightAmt" data-field="shiftRightAmt">
-                    <th>Shift Right Amt</th>
-                    <td>0.75</td>
-                </tr>
-                <tr class="recoil" data-field="recoil">
-                    <th>Recoil</th>
-                    <td>0</td>
-                </tr>
-                <tr class="rightHand" data-field="rightHand">
-                    <th>右手持枪</th>
-                    <td>1</td>
-                </tr>
-                </tbody>
+            <table class="settings" id="viewModelSettings">
             </table>
         </section>
         <section id="bob" class="bob">
             <h3>Bob</h3>
-            <table class="settings">
-                <tbody>
-                <tr class="lowerAmt" data-field="lowerAmt">
-                    <th>Lower Amt</th>
-                    <td>21</td>
-                </tr>
-                <tr class="amtLat" data-field="amtLat">
-                    <th>Amt Lat</th>
-                    <td>0.33</td>
-                </tr>
-                <tr class="amtVert" data-field="amtVert">
-                    <th>Amt Vert</th>
-                    <td>0.14</td>
-                </tr>
-                <tr class="cycle" data-field="cycle">
-                    <th>Cycle</th>
-                    <td>0.98</td>
-                </tr>
-                </tbody>
+            <table class="settings" id="bobSettings">
             </table>
         </section>
         <section id="launchOptions" class="launchOptions">
-            <h3>游戏启动参数</h3>
-            <span>-freq 360 -novid -console -tickrate 128 +fps_max 500</span>
         </section>
         <section id="videoSettings" class="videoSettings_parent">
             <h3>视频设置</h3>
             <div class="settings">
                 <section id="video" class="videoSettings_child">
-                    <h4>Video</h4>
-                    <table class="settings">
-                        <tbody>
-                        <tr class="resolution" data-field="resolution">
-                            <th>分辨率</th>
-                            <td>1280x960</td>
-                        </tr>
-                        <tr class="aspectRatio" data-field="aspectRatio">
-                            <th>画面比例</th>
-                            <td>4:3</td>
-                        </tr>
-                        <tr class="scalingMode" data-field="scalingMode">
-                            <th>缩放模式</th>
-                            <td>拉伸</td>
-                        </tr>
-                        <tr class="colorMode" data-field="colorMode">
-                            <th>颜色模式</th>
-                            <td>电脑显示器</td>
-                        </tr>
-                        <tr class="brightness" data-field="brightness">
-                            <th>Brightness</th>
-                            <td>130%</td>
-                        </tr>
-                        <tr class="displayMode" data-field="displayMode">
-                            <th>Display Mode</th>
-                            <td>全屏幕</td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </section>
                 <section id="advancedVideo"
                          class="advancedVideoSettings_child">
                     <h4>高级视频设置</h4>
-                    <table class="settings">
-                        <tbody>
-                        <tr class="globalShadowQuality" data-field="globalShadowQuality">
-                            <th>全局阴影质量</th>
-                            <td>非常低</td>
-                        </tr>
-                        <tr class="modelTextureDetail" data-field="modelTextureDetail">
-                            <th>纹理细节</th>
-                            <td>低</td>
-                        </tr>
-                        <tr class="textureStreaming" data-field="textureStreaming">
-                            <th>纹理流送</th>
-                            <td>禁用</td>
-                        </tr>
-                        <tr class="effectDetail" data-field="effectDetail">
-                            <th>效果细节</th>
-                            <td>低</td>
-                        </tr>
-                        <tr class="shaderDetail" data-field="shaderDetail">
-                            <th>着色器细节</th>
-                            <td>低</td>
-                        </tr>
-                        <tr class="boostPlayerContrast" data-field="boostPlayerContrast">
-                            <th>增强玩家对比度</th>
-                            <td>禁用</td>
-                        </tr>
-                        <tr class="multicoreRendering" data-field="multicoreRendering">
-                            <th>多核优化</th>
-                            <td>已启用</td>
-                        </tr>
-                        <tr class="multisamplingAnti-aliasingMode"
-                            data-field="multisamplingAntiAliasingMode">
-                            <th>多重采样抗锯齿</th>
-                            <td>8xMSAA</td>
-                        </tr>
-                        <tr class="fxaaAntiAliasing" data-field="fxaaAntiAliasing">
-                            <th>FXAA抗锯齿</th>
-                            <td>禁用</td>
-                        </tr>
-                        <tr class="textureFilteringMode" data-field="textureFilteringMode">
-                            <th>纹理过滤模式</th>
-                            <td>双线性</td>
-                        </tr>
-                        <tr class="waitForVerticalSync" data-field="waitForVerticalSync">
-                            <th>等待垂直同步</th>
-                            <td>禁用</td>
-                        </tr>
-                        <tr class="motionBlur" data-field="motionBlur">
-                            <th>动态模糊</th>
-                            <td>禁用</td>
-                        </tr>
-                        <tr class="tripleMonitorMode" data-field="tripleMonitorMode">
-                            <th>三重监视器模式</th>
-                            <td>禁用</td>
-                        </tr>
-                        <tr class="useUberShaders" data-field="useUberShaders">
-                            <th>使用着色器</th>
-                            <td>已启用</td>
-                        </tr>
-                        </tbody>
+                    <table class="settings" id="advancedVideoSettings">
                     </table>
                 </section>
             </div>
@@ -322,89 +52,488 @@
 <div id="equipment" class="equipment">
     <h2 style="text-align: center">-设配信息-</h2>
     <section id="gear" class="gear">
-        <h3>外设信息</h3>
-        <div class="equipmentBoxes">
-            <div class="equipmentBox">
-                <h4>ZOWIE XL2566K</h4>
-                <div class="equipmentTag">显示器</div>
-                <div class="equipmentImg">
-                    <img alt="ZOWIE XL2566K" height="187" width="187"
-                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/benq-xl2566k.png">
-                </div>
-            </div>
-            <div class="equipmentBox">
-                <h4>Logitech G Pro X Superlight Red</h4>
-                <div class="equipmentTag">鼠标</div>
-                <div class="equipmentImg">
-                    <img alt="Logitech G Pro X Superlight Red"
-                         height="187" width="187"
-                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/logitech-g-pro-x-superlight-red.png">
-                </div>
-            </div>
-            <div class="equipmentBox">
-                <h4>Logitech G Pro X TKL Keyboard Black</h4>
-                <div class="equipmentTag">键盘</div>
-                <div class="equipmentImg">
-                    <img alt="Logitech G Pro X TKL Keyboard Black" height="187"
-                         width="187"
-                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/logitech-g-pro-x-tkl-keyboard-black.png">
-                </div>
-            </div>
-            <div class="equipmentBox">
-                <h4>Logitech G PRO X 2 Headset Magenta</h4>
-                <div class="equipmentTag">头戴式耳机</div>
-                <div class="equipmentImg">
-                    <img alt="Logitech G PRO X 2 Headset Magenta" height="187" width="187"
-                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/logitech-g-pro-x-2-headset-magenta.png">
-                </div>
-            </div>
-            <div class="equipmentBox">
-                <h4>Hator It’s nice to be s1mple</h4>
-                <div class="equipmentTag">鼠标垫</div>
-                <div class="equipmentImg">
-                    <img alt="Hator It’s nice to be s1mple" height="187" width="187"
-                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/hator-its-nice-to-be-s1mple.png">
-                </div>
-            </div>
-            <div class="equipmentBox">
-                <h4>Sennheiser CX 300S</h4>
-                <div class="equipmentTag">入耳式耳机</div>
-                <div class="equipmentImg">
-                    <img alt="Sennheiser CX 300S" height="187" width="187"
-                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/sennheisers-cx-300s.png">
-                </div>
-            </div>
-        </div>
     </section>
     <section id="pcSpecs" class="pcSpecs">
-        <h3>主机信息</h3>
-        <div class="equipmentBoxes">
-            <div class="equipmentBox">
-                <h4>AMD Ryzen 9 5950X</h4>
-                <div class="equipmentTag">CPU</div>
-                <div class="equipmentImg">
-                    <img alt="AMD Ryzen 9 5950X" height="187" width="187"
-                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/amd-ryzen-5000-series.png">
-                </div>
-            </div>
-            <div class="equipmentBox">
-                <h4>NVIDIA GeForce RTX 3090</h4>
-                <div class="equipmentTag">显卡</div>
-                <div class="equipmentImg">
-                    <img alt="NVIDIA GeForce RTX 3090" height="187" width="187"
-                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/nvidia-geforce-rtx-3090.png">
-                </div>
-            </div>
-            <div class="equipmentBox">
-                <h4>GIGABYTE X570 AORUS Ultra</h4>
-                <div class="equipmentTag">主板</div>
-                <div class="equipmentImg">
-                    <img alt="GIGABYTE X570 AORUS Ultra" height="187" width="187"
-                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/gigabyte-x570-aorus-ultra.png">
-                </div>
-            </div>
-        </div>
     </section>
 </div>
+<script type="text/javascript">
+    layui.use("jquery")
+    var $ = layui.jquery;
+
+    let url = window.location.href
+    let arr = url.split('?')
+    let proId
+    let param = ''
+    if (arr.length > 1) {
+        param = '?' + arr[1]
+    }
+    proId = param.split('=')[1]
+    $.ajax({
+        type: "GET"
+        , url: "http://localhost:8080/proBasicInfo/getProBasicInfoById"
+        , dataType: "json"
+        , data: {'proId':proId}
+        , headers: {token: localStorage.getItem("token")}
+        , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+            $('#proBasicInfo').append(' <section class="info">\n' +
+                '        <div class="info_data">\n' +
+                '            <div class="name">\n' +
+                '                <h1>'+data.obj.proGameId+'</h1>\n' +
+                '            </div>\n' +
+                '            <table class="data">\n' +
+                '                <tbody>\n' +
+                '                <tr class="proName">\n' +
+                '                    <th>姓名</th>\n' +
+                '                    <td>'+data.obj.proName+'</td>\n' +
+                '                </tr>\n' +
+                '                <tr class="proBirthday">\n' +
+                '                    <th>出生日期</th>\n' +
+                '                    <td>'+data.obj.proBirthday+'</td>\n' +
+                '                </tr>\n' +
+                '                <tr class="proCountry">\n' +
+                '                    <th>国籍</th>\n' +
+                '                    <td>'+data.obj.proCountry+'</td>\n' +
+                '                </tr>\n' +
+                '                <tr class="proTeam">\n' +
+                '                    <th>所属战队</th>\n' +
+                '                    <td>'+data.obj.proClan+'</td>\n' +
+                '                </tr>\n' +
+                '                </tbody>\n' +
+                '            </table>\n' +
+                '        </div>\n' +
+                '        <div class="profile">\n' +
+                '            <p>'+data.obj.proProfile+'\n'+
+                '        </div>\n' +
+                '    </section>\n' +
+                '    <section class="picture">\n' +
+                '        <img src="imgs/s1mple.png"\n' +
+                '             alt="s1mple"\n' +
+                '             height="240" width="240">\n' +
+                '    </section>')
+        }
+        , error: function (obj) {
+            console.log("请求失败")
+        }
+    })
+    $.ajax({
+        type: "GET"
+        , url: "http://localhost:8080/proCsgoAdvancedVideoSettings/getProCsgoAdvancedVideoSettingsById"
+        , dataType: "json"
+        , data: {'proId':proId}
+        , headers: {token: localStorage.getItem("token")}
+        , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                $('#advancedVideoSettings').append('<tbody>\n' +
+                    '                        <tr class="globalShadowQuality" data-field="globalShadowQuality">\n' +
+                    '                            <th>全局阴影质量</th>\n' +
+                    '                            <td>'+data.obj.avGlobalShadowQuality+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="modelTextureDetail" data-field="modelTextureDetail">\n' +
+                    '                            <th>纹理细节</th>\n' +
+                    '                            <td>'+data.obj.avTextureDetail+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="textureStreaming" data-field="textureStreaming">\n' +
+                    '                            <th>纹理流送</th>\n' +
+                    '                            <td>'+data.obj.avTextureStreaming+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="effectDetail" data-field="effectDetail">\n' +
+                    '                            <th>效果细节</th>\n' +
+                    '                            <td>'+data.obj.avEffectDetail+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="shaderDetail" data-field="shaderDetail">\n' +
+                    '                            <th>着色器细节</th>\n' +
+                    '                            <td>'+data.obj.avShaderDetail+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="boostPlayerContrast" data-field="boostPlayerContrast">\n' +
+                    '                            <th>增强玩家对比度</th>\n' +
+                    '                            <td>'+data.obj.avBoostPlayerContrast+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="multicoreRendering" data-field="multicoreRendering">\n' +
+                    '                            <th>多核优化</th>\n' +
+                    '                            <td>'+data.obj.avMulticoreRendering+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="multisamplingAnti-aliasingMode"\n' +
+                    '                            data-field="multisamplingAntiAliasingMode">\n' +
+                    '                            <th>多重采样抗锯齿</th>\n' +
+                    '                            <td>'+data.obj.avMultisamplingAntiAliasingMode+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="fxaaAntiAliasing" data-field="fxaaAntiAliasing">\n' +
+                    '                            <th>FXAA抗锯齿</th>\n' +
+                    '                            <td>'+data.obj.avFxaaAntiAliasing+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="textureFilteringMode" data-field="textureFilteringMode">\n' +
+                    '                            <th>纹理过滤模式</th>\n' +
+                    '                            <td>'+data.obj.avTextureFilteringMode+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="waitForVerticalSync" data-field="waitForVerticalSync">\n' +
+                    '                            <th>等待垂直同步</th>\n' +
+                    '                            <td>'+data.obj.avWaitForVerticalSync+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="motionBlur" data-field="motionBlur">\n' +
+                    '                            <th>动态模糊</th>\n' +
+                    '                            <td>'+data.obj.avMotionBlur+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="tripleMonitorMode" data-field="tripleMonitorMode">\n' +
+                    '                            <th>三重监视器模式</th>\n' +
+                    '                            <td>'+data.obj.avTripleMonitorMode+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="useUberShaders" data-field="useUberShaders">\n' +
+                    '                            <th>使用着色器</th>\n' +
+                    '                            <td>'+data.obj.avUseUberShaders+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        </tbody>')
+            }
+        , error: function (obj) {
+            console.log("请求失败")
+        }
+    })
+    $.ajax({
+        type: "GET"
+        , url: "http://localhost:8080/proCsgoBobSettings/getProCsgoBobSettingsById"
+        , dataType: "json"
+        , data: {'proId':proId}
+        , headers: {token: localStorage.getItem("token")}
+        , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                $('#bobSettings').append('<tbody>\n' +
+                    '                <tr class="lowerAmt" data-field="lowerAmt">\n' +
+                    '                    <th>Lower Amt</th>\n' +
+                    '                    <td>'+data.obj.bobLowerAmt+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="amtLat" data-field="amtLat">\n' +
+                    '                    <th>Amt Lat</th>\n' +
+                    '                    <td>'+data.obj.bobAmtLat+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="amtVert" data-field="amtVert">\n' +
+                    '                    <th>Amt Vert</th>\n' +
+                    '                    <td>'+data.obj.bobAmtVert+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="cycle" data-field="cycle">\n' +
+                    '                    <th>Cycle</th>\n' +
+                    '                    <td>'+data.obj.bobCycle+'</td>\n' +
+                    '                </tr>\n' +
+                    '                </tbody>')
+            }
+        , error: function (obj) {
+            console.log("请求失败")
+        }
+    })
+    $.ajax({
+        type: "GET"
+        , url: "http://localhost:8080/proCsgoCrosshairSettings/getProCsgoCrosshairSettingsById"
+        , dataType: "json"
+        , headers: {token: localStorage.getItem("token")}
+        , data: {'proId':proId}
+        , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                $('#crossHairSettings').append('<tbody>\n' +
+                    '                <tr class="drawOutLine" data-field="drawOutLine">\n' +
+                    '                    <th>准星轮廓</th>\n' +
+                    '                    <td>'+data.obj.crDrawoutline+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="alpha" data-field="alpha">\n' +
+                    '                    <th>Alpha</th>\n' +
+                    '                    <td>'+data.obj.crAlpha+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="format-number field-color" data-field="cl_crosshaircolor">\n' +
+                    '                    <th>颜色</th>\n' +
+                    '                    <td>'+data.obj.crColor+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="blue" data-field="blue">\n' +
+                    '                    <th>蓝色</th>\n' +
+                    '                    <td>'+data.obj.crBlue+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="green" data-field="green">\n' +
+                    '                    <th>绿色</th>\n' +
+                    '                    <td>'+data.obj.crGreen+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="red" data-field="red">\n' +
+                    '                    <th>红色</th>\n' +
+                    '                    <td>'+data.obj.crRed+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="dot" data-field="dot">\n' +
+                    '                    <th>中心点</th>\n' +
+                    '                    <td>'+data.obj.crDot+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="gap" data-field="gap">\n' +
+                    '                    <th>间隙</th>\n' +
+                    '                    <td>'+data.obj.crGap+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="size" data-field="size">\n' +
+                    '                    <th>大小</th>\n' +
+                    '                    <td>'+data.obj.crSize+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="style" data-field="style">\n' +
+                    '                    <th>样式</th>\n' +
+                    '                    <td>'+data.obj.crStyle+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="thickness" data-field="thickness">\n' +
+                    '                    <th>厚度</th>\n' +
+                    '                    <td>'+data.obj.crThickness+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="sniperWidth" data-field="sniperWidth">\n' +
+                    '                    <th>开镜准星宽度</th>\n' +
+                    '                    <td>'+data.obj.crSniperWidth+'</td>\n' +
+                    '                </tr>\n' +
+                    '                </tbody>')
+            }
+        , error: function (obj) {
+            console.log("请求失败")
+        }
+    })
+    $.ajax({
+        type: "GET"
+        , url: "http://localhost:8080/proCsgoEquipmentGear/getProCsgoEquipmentGearById"
+        , dataType: "json"
+        , headers: {token: localStorage.getItem("token")}
+        , data: {'proId':proId}
+        , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                $('#gear').append('<h3>外设信息</h3>\n' +
+                    '        <div class="equipmentBoxes">\n' +
+                    '            <div class="equipmentBox">\n' +
+                    '                <h4>'+data.obj.gearMonitor+'</h4>\n' +
+                    '                <div class="equipmentTag">显示器</div>\n' +
+                    '                <div class="equipmentImg">\n' +
+                    '                    <img alt="ZOWIE XL2566K" height="187" width="187"\n' +
+                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/benq-xl2566k.png">\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '            <div class="equipmentBox">\n' +
+                    '                <h4>'+data.obj.gearMouse+'</h4>\n' +
+                    '                <div class="equipmentTag">鼠标</div>\n' +
+                    '                <div class="equipmentImg">\n' +
+                    '                    <img alt="Logitech G Pro X Superlight Red"\n' +
+                    '                         height="187" width="187"\n' +
+                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/logitech-g-pro-x-superlight-red.png">\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '            <div class="equipmentBox">\n' +
+                    '                <h4>'+data.obj.gearKeyboard+'</h4>\n' +
+                    '                <div class="equipmentTag">键盘</div>\n' +
+                    '                <div class="equipmentImg">\n' +
+                    '                    <img alt="Logitech G Pro X TKL Keyboard Black" height="187"\n' +
+                    '                         width="187"\n' +
+                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/logitech-g-pro-x-tkl-keyboard-black.png">\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '            <div class="equipmentBox">\n' +
+                    '                <h4>'+data.obj.gearHeadset+'</h4>\n' +
+                    '                <div class="equipmentTag">头戴式耳机</div>\n' +
+                    '                <div class="equipmentImg">\n' +
+                    '                    <img alt="Logitech G PRO X 2 Headset Magenta" height="187" width="187"\n' +
+                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/logitech-g-pro-x-2-headset-magenta.png">\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '            <div class="equipmentBox">\n' +
+                    '                <h4>'+data.obj.gearMousepad+'</h4>\n' +
+                    '                <div class="equipmentTag">鼠标垫</div>\n' +
+                    '                <div class="equipmentImg">\n' +
+                    '                    <img alt="Hator It’s nice to be s1mple" height="187" width="187"\n' +
+                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/hator-its-nice-to-be-s1mple.png">\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '            <div class="equipmentBox">\n' +
+                    '                <h4>'+data.obj.gearEarphones+'</h4>\n' +
+                    '                <div class="equipmentTag">入耳式耳机</div>\n' +
+                    '                <div class="equipmentImg">\n' +
+                    '                    <img alt="Sennheiser CX 300S" height="187" width="187"\n' +
+                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/sennheisers-cx-300s.png">\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '        </div>')
+        }
+        , error: function (obj) {
+            console.log("请求失败")
+        }
+    })
+    $.ajax({
+        type: "GET"
+        , url: "http://localhost:8080/proCsgoLaunchOptions/getProCsgoLaunchOptionsById"
+        , dataType: "json"
+        , data: {'proId':proId}
+        , headers: {token: localStorage.getItem("token")}
+        , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                $('#launchOptions').append(' ' +
+                    '<h3>游戏启动参数</h3>\n' +
+                    '<span>'+data.obj.launchOptions+'</span>')
+            }
+        , error: function (obj) {
+            console.log("请求失败")
+        }
+    })
+    $.ajax({
+        type: "GET"
+        , url: "http://localhost:8080/proCsgoPcSpecs/getProCsgoPcSpecsById"
+        , dataType: "json"
+        , data: {'proId':proId}
+        , headers: {token: localStorage.getItem("token")}
+        , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                $('#pcSpecs').append(' <h3>主机信息</h3>\n' +
+                    '        <div class="equipmentBoxes">\n' +
+                    '            <div class="equipmentBox">\n' +
+                    '                <h4>'+data.obj.psProcessor+'</h4>\n' +
+                    '                <div class="equipmentTag">CPU</div>\n' +
+                    '                <div class="equipmentImg">\n' +
+                    '                    <img alt="AMD Ryzen 9 5950X" height="187" width="187"\n' +
+                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/amd-ryzen-5000-series.png">\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '            <div class="equipmentBox">\n' +
+                    '                <h4>'+data.obj.psGraphicsCard+'</h4>\n' +
+                    '                <div class="equipmentTag">显卡</div>\n' +
+                    '                <div class="equipmentImg">\n' +
+                    '                    <img alt="NVIDIA GeForce RTX 3090" height="187" width="187"\n' +
+                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/nvidia-geforce-rtx-3090.png">\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '            <div class="equipmentBox">\n' +
+                    '                <h4>'+data.obj.psMotherboard+'</h4>\n' +
+                    '                <div class="equipmentTag">主板</div>\n' +
+                    '                <div class="equipmentImg">\n' +
+                    '                    <img alt="GIGABYTE X570 AORUS Ultra" height="187" width="187"\n' +
+                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/gigabyte-x570-aorus-ultra.png">\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '        </div>')
+        }
+        , error: function (obj) {
+            console.log("请求失败")
+        }
+    })
+    $.ajax({
+        type: "GET"
+        , url: "http://localhost:8080/proCsgoVideoSettings/getProCsgoVideoSettingsById"
+        , dataType: "json"
+        , data: {'proId':proId}
+        , headers: {token: localStorage.getItem("token")}
+        , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                $('#video').append(' <h4>Video</h4>\n' +
+                    '                    <table class="settings">\n' +
+                    '                        <tbody>\n' +
+                    '                        <tr class="resolution" data-field="resolution">\n' +
+                    '                            <th>分辨率</th>\n' +
+                    '                            <td>'+data.obj.videoResolution+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="aspectRatio" data-field="aspectRatio">\n' +
+                    '                            <th>画面比例</th>\n' +
+                    '                            <td>'+data.obj.videoAspectRatio+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="scalingMode" data-field="scalingMode">\n' +
+                    '                            <th>缩放模式</th>\n' +
+                    '                            <td>'+data.obj.videoScalingMode+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="colorMode" data-field="colorMode">\n' +
+                    '                            <th>颜色模式</th>\n' +
+                    '                            <td>'+data.obj.videoColorMode+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="brightness" data-field="brightness">\n' +
+                    '                            <th>Brightness</th>\n' +
+                    '                            <td>'+data.obj.videoBrightness+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        <tr class="displayMode" data-field="displayMode">\n' +
+                    '                            <th>Display Mode</th>\n' +
+                    '                            <td>'+data.obj.videoDisplayMode+'</td>\n' +
+                    '                        </tr>\n' +
+                    '                        </tbody>\n' +
+                    '                    </table>')
+            }
+        , error: function (obj) {
+            console.log("请求失败")
+        }
+    })
+    $.ajax({
+        type: "GET"
+        , url: "http://localhost:8080/proCsgoViewmodelSettings/getProCsgoViewmodelSettingsById"
+        , dataType: "json"
+        , headers: {token: localStorage.getItem("token")}
+        , data: {'proId':proId}
+        , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                $('#viewModelSettings').append(' <tbody>\n' +
+                    '                <tr class="fov" data-field="fov">\n' +
+                    '                    <th>FOV</th>\n' +
+                    '                    <td>'+data.obj.vlFov+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="offsetX" data-field="offsetX">\n' +
+                    '                    <th>Offset X</th>\n' +
+                    '                    <td>'+data.obj.vlOffsetX+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="offsetY" data-field="offsetY">\n' +
+                    '                    <th>Offset Y</th>\n' +
+                    '                    <td>'+data.obj.vlOffsetY+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="offsetZ" data-field="offsetZ">\n' +
+                    '                    <th>Offset Z</th>\n' +
+                    '                    <td>'+data.obj.vlOffsetZ+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="presetPos" data-field="presetPos">\n' +
+                    '                    <th>持枪视角</th>\n' +
+                    '                    <td>'+data.obj.vlPresetpos+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="shiftLeftAmt" data-field="shiftLeftAmt">\n' +
+                    '                    <th>Shift Left Amt</th>\n' +
+                    '                    <td>'+data.obj.vlShiftLeftAmt+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="shiftRightAmt" data-field="shiftRightAmt">\n' +
+                    '                    <th>Shift Right Amt</th>\n' +
+                    '                    <td>'+data.obj.vlShiftRightAmt+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="recoil" data-field="recoil">\n' +
+                    '                    <th>Recoil</th>\n' +
+                    '                    <td>'+data.obj.vlRecoil+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="rightHand" data-field="rightHand">\n' +
+                    '                    <th>右手持枪</th>\n' +
+                    '                    <td>'+data.obj.vlRighthand+'</td>\n' +
+                    '                </tr>\n' +
+                    '                </tbody>')
+        }
+        , error: function (obj) {
+            console.log("请求失败")
+        }
+    })
+    $.ajax({
+        type: "GET"
+        , url: "http://localhost:8080/proMouseInfo/getProMouseInfoById"
+        , dataType: "json"
+        , data: {'proId':proId}
+        , headers: {token: localStorage.getItem("token")}
+        , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+                $('#mouseSettings').append(' <tbody>\n' +
+                    '                <tr class="dpi" data-field="dpi">\n' +
+                    '                    <th>DPI</th>\n' +
+                    '                    <td>'+data.obj.msDpi+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="sensitivity" data-field="sensitivity">\n' +
+                    '                    <th>敏感度</th>\n' +
+                    '                    <td>'+data.obj.msSensitivity+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="edpi" data-field="edpi">\n' +
+                    '                    <th>eDPI</th>\n' +
+                    '                    <td>'+data.obj.msEdpi+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="zoomSensitivity" data-field="zoomSensitivity">\n' +
+                    '                    <th>开镜灵敏度</th>\n' +
+                    '                    <td>'+data.obj.msZoomSensitivity+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="hz" data-field="hz">\n' +
+                    '                    <th>轮询率</th>\n' +
+                    '                    <td>'+data.obj.msHz+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="windowsSensitivity" data-field="windowsSensitivity">\n' +
+                    '                    <th>Windows桌面灵敏度</th>\n' +
+                    '                    <td>'+data.obj.msWindowsSensitivity+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="rawInput" data-field="RawInput">\n' +
+                    '                    <th>原始输入</th>\n' +
+                    '                    <td>'+data.obj.msRawInput+'</td>\n' +
+                    '                </tr>\n' +
+                    '                <tr class="acceleration" data-field="acceleration">\n' +
+                    '                    <th>鼠标加速</th>\n' +
+                    '                    <td>'+data.obj.msMouseAcceleration+'</td>\n' +
+                    '                </tr>\n' +
+                    '                </tbody>')
+        }
+        , error: function (obj) {
+            console.log("请求失败")
+        }
+    })
+</script>
 </body>
 </html>
