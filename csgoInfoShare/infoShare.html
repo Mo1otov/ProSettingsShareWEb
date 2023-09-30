@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>s1mple</title>
+    <title></title>
     <link href="css/infoShare.css" rel="stylesheet">
     <script src="../layui/layui.js"></script>
 </head>
@@ -52,8 +52,9 @@
 <div id="equipment" class="equipment">
     <h2 style="text-align: center">-设配信息-</h2>
     <section id="gear" class="gear">
-    </section>
-    <section id="pcSpecs" class="pcSpecs">
+        <h3>外设信息</h3>
+        <div class="equipmentBoxes" id="equipmentBoxes">
+        </div>
     </section>
 </div>
 <script type="text/javascript">
@@ -75,6 +76,7 @@
         , data: {'proId':proId}
         , headers: {token: localStorage.getItem("token")}
         , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
+            document.title=data.obj.proGameId
             $('#proBasicInfo').append(' <section class="info">\n' +
                 '        <div class="info_data">\n' +
                 '            <div class="name">\n' +
@@ -106,7 +108,7 @@
                 '        </div>\n' +
                 '    </section>\n' +
                 '    <section class="picture">\n' +
-                '        <img src="imgs/s1mple.png"\n' +
+                '        <img src="data:image/png;base64,' + data.obj.proImg+'"\n' +
                 '             alt="s1mple"\n' +
                 '             height="240" width="240">\n' +
                 '    </section>')
@@ -123,60 +125,59 @@
         , headers: {token: localStorage.getItem("token")}
         , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
                 $('#advancedVideoSettings').append('<tbody>\n' +
-                    '                        <tr class="globalShadowQuality" data-field="globalShadowQuality">\n' +
+                    '                        <tr class="globalShadowQuality">\n' +
                     '                            <th>全局阴影质量</th>\n' +
                     '                            <td>'+data.obj.avGlobalShadowQuality+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="modelTextureDetail" data-field="modelTextureDetail">\n' +
+                    '                        <tr class="modelTextureDetail">\n' +
                     '                            <th>纹理细节</th>\n' +
                     '                            <td>'+data.obj.avTextureDetail+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="textureStreaming" data-field="textureStreaming">\n' +
+                    '                        <tr class="textureStreaming">\n' +
                     '                            <th>纹理流送</th>\n' +
                     '                            <td>'+data.obj.avTextureStreaming+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="effectDetail" data-field="effectDetail">\n' +
+                    '                        <tr class="effectDetail">\n' +
                     '                            <th>效果细节</th>\n' +
                     '                            <td>'+data.obj.avEffectDetail+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="shaderDetail" data-field="shaderDetail">\n' +
+                    '                        <tr class="shaderDetail">\n' +
                     '                            <th>着色器细节</th>\n' +
                     '                            <td>'+data.obj.avShaderDetail+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="boostPlayerContrast" data-field="boostPlayerContrast">\n' +
+                    '                        <tr class="boostPlayerContrast">\n' +
                     '                            <th>增强玩家对比度</th>\n' +
                     '                            <td>'+data.obj.avBoostPlayerContrast+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="multicoreRendering" data-field="multicoreRendering">\n' +
+                    '                        <tr class="multicoreRendering">\n' +
                     '                            <th>多核优化</th>\n' +
                     '                            <td>'+data.obj.avMulticoreRendering+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="multisamplingAnti-aliasingMode"\n' +
-                    '                            data-field="multisamplingAntiAliasingMode">\n' +
+                    '                        <tr class="multisamplingAnti-aliasingMode">\n' +
                     '                            <th>多重采样抗锯齿</th>\n' +
                     '                            <td>'+data.obj.avMultisamplingAntiAliasingMode+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="fxaaAntiAliasing" data-field="fxaaAntiAliasing">\n' +
+                    '                        <tr class="fxaaAntiAliasing">\n' +
                     '                            <th>FXAA抗锯齿</th>\n' +
                     '                            <td>'+data.obj.avFxaaAntiAliasing+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="textureFilteringMode" data-field="textureFilteringMode">\n' +
+                    '                        <tr class="textureFilteringMode“>\n' +
                     '                            <th>纹理过滤模式</th>\n' +
                     '                            <td>'+data.obj.avTextureFilteringMode+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="waitForVerticalSync" data-field="waitForVerticalSync">\n' +
+                    '                        <tr class="waitForVerticalSync">\n' +
                     '                            <th>等待垂直同步</th>\n' +
                     '                            <td>'+data.obj.avWaitForVerticalSync+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="motionBlur" data-field="motionBlur">\n' +
+                    '                        <tr class="motionBlur">\n' +
                     '                            <th>动态模糊</th>\n' +
                     '                            <td>'+data.obj.avMotionBlur+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="tripleMonitorMode" data-field="tripleMonitorMode">\n' +
+                    '                        <tr class="tripleMonitorMode">\n' +
                     '                            <th>三重监视器模式</th>\n' +
                     '                            <td>'+data.obj.avTripleMonitorMode+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="useUberShaders" data-field="useUberShaders">\n' +
+                    '                        <tr class="useUberShaders">\n' +
                     '                            <th>使用着色器</th>\n' +
                     '                            <td>'+data.obj.avUseUberShaders+'</td>\n' +
                     '                        </tr>\n' +
@@ -194,19 +195,19 @@
         , headers: {token: localStorage.getItem("token")}
         , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
                 $('#bobSettings').append('<tbody>\n' +
-                    '                <tr class="lowerAmt" data-field="lowerAmt">\n' +
+                    '                <tr class="lowerAmt">\n' +
                     '                    <th>Lower Amt</th>\n' +
                     '                    <td>'+data.obj.bobLowerAmt+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="amtLat" data-field="amtLat">\n' +
+                    '                <tr class="amtLat">\n' +
                     '                    <th>Amt Lat</th>\n' +
                     '                    <td>'+data.obj.bobAmtLat+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="amtVert" data-field="amtVert">\n' +
+                    '                <tr class="amtVert">\n' +
                     '                    <th>Amt Vert</th>\n' +
                     '                    <td>'+data.obj.bobAmtVert+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="cycle" data-field="cycle">\n' +
+                    '                <tr class="cycle">\n' +
                     '                    <th>Cycle</th>\n' +
                     '                    <td>'+data.obj.bobCycle+'</td>\n' +
                     '                </tr>\n' +
@@ -224,51 +225,51 @@
         , data: {'proId':proId}
         , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
                 $('#crossHairSettings').append('<tbody>\n' +
-                    '                <tr class="drawOutLine" data-field="drawOutLine">\n' +
+                    '                <tr class="drawOutLine">\n' +
                     '                    <th>准星轮廓</th>\n' +
                     '                    <td>'+data.obj.crDrawoutline+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="alpha" data-field="alpha">\n' +
+                    '                <tr class="alpha">\n' +
                     '                    <th>Alpha</th>\n' +
                     '                    <td>'+data.obj.crAlpha+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="format-number field-color" data-field="cl_crosshaircolor">\n' +
+                    '                <tr class="format-number field-color">\n' +
                     '                    <th>颜色</th>\n' +
                     '                    <td>'+data.obj.crColor+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="blue" data-field="blue">\n' +
+                    '                <tr class="blue">\n' +
                     '                    <th>蓝色</th>\n' +
                     '                    <td>'+data.obj.crBlue+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="green" data-field="green">\n' +
+                    '                <tr class="green">\n' +
                     '                    <th>绿色</th>\n' +
                     '                    <td>'+data.obj.crGreen+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="red" data-field="red">\n' +
+                    '                <tr class="red">\n' +
                     '                    <th>红色</th>\n' +
                     '                    <td>'+data.obj.crRed+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="dot" data-field="dot">\n' +
+                    '                <tr class="dot">\n' +
                     '                    <th>中心点</th>\n' +
                     '                    <td>'+data.obj.crDot+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="gap" data-field="gap">\n' +
+                    '                <tr class="gap">\n' +
                     '                    <th>间隙</th>\n' +
                     '                    <td>'+data.obj.crGap+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="size" data-field="size">\n' +
+                    '                <tr class="size">\n' +
                     '                    <th>大小</th>\n' +
                     '                    <td>'+data.obj.crSize+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="style" data-field="style">\n' +
+                    '                <tr class="style">\n' +
                     '                    <th>样式</th>\n' +
                     '                    <td>'+data.obj.crStyle+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="thickness" data-field="thickness">\n' +
+                    '                <tr class="thickness">\n' +
                     '                    <th>厚度</th>\n' +
                     '                    <td>'+data.obj.crThickness+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="sniperWidth" data-field="sniperWidth">\n' +
+                    '                <tr class="sniperWidth">\n' +
                     '                    <th>开镜准星宽度</th>\n' +
                     '                    <td>'+data.obj.crSniperWidth+'</td>\n' +
                     '                </tr>\n' +
@@ -285,59 +286,19 @@
         , headers: {token: localStorage.getItem("token")}
         , data: {'proId':proId}
         , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
-                $('#gear').append('<h3>外设信息</h3>\n' +
-                    '        <div class="equipmentBoxes">\n' +
-                    '            <div class="equipmentBox">\n' +
-                    '                <h4>'+data.obj.gearMonitor+'</h4>\n' +
-                    '                <div class="equipmentTag">显示器</div>\n' +
-                    '                <div class="equipmentImg">\n' +
-                    '                    <img alt="ZOWIE XL2566K" height="187" width="187"\n' +
-                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/benq-xl2566k.png">\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '            <div class="equipmentBox">\n' +
-                    '                <h4>'+data.obj.gearMouse+'</h4>\n' +
-                    '                <div class="equipmentTag">鼠标</div>\n' +
-                    '                <div class="equipmentImg">\n' +
-                    '                    <img alt="Logitech G Pro X Superlight Red"\n' +
-                    '                         height="187" width="187"\n' +
-                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/logitech-g-pro-x-superlight-red.png">\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '            <div class="equipmentBox">\n' +
-                    '                <h4>'+data.obj.gearKeyboard+'</h4>\n' +
-                    '                <div class="equipmentTag">键盘</div>\n' +
-                    '                <div class="equipmentImg">\n' +
-                    '                    <img alt="Logitech G Pro X TKL Keyboard Black" height="187"\n' +
-                    '                         width="187"\n' +
-                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/logitech-g-pro-x-tkl-keyboard-black.png">\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '            <div class="equipmentBox">\n' +
-                    '                <h4>'+data.obj.gearHeadset+'</h4>\n' +
-                    '                <div class="equipmentTag">头戴式耳机</div>\n' +
-                    '                <div class="equipmentImg">\n' +
-                    '                    <img alt="Logitech G PRO X 2 Headset Magenta" height="187" width="187"\n' +
-                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/logitech-g-pro-x-2-headset-magenta.png">\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '            <div class="equipmentBox">\n' +
-                    '                <h4>'+data.obj.gearMousepad+'</h4>\n' +
-                    '                <div class="equipmentTag">鼠标垫</div>\n' +
-                    '                <div class="equipmentImg">\n' +
-                    '                    <img alt="Hator It’s nice to be s1mple" height="187" width="187"\n' +
-                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/hator-its-nice-to-be-s1mple.png">\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '            <div class="equipmentBox">\n' +
-                    '                <h4>'+data.obj.gearEarphones+'</h4>\n' +
-                    '                <div class="equipmentTag">入耳式耳机</div>\n' +
-                    '                <div class="equipmentImg">\n' +
-                    '                    <img alt="Sennheiser CX 300S" height="187" width="187"\n' +
-                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/sennheisers-cx-300s.png">\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '        </div>')
+            for (let i = 0; i < data.obj.length; i++) {
+                if (data.obj[i] != null) {
+                    $('#equipmentBoxes').append('\n'+'<div class="equipmentBox">\n'+
+                        '  <h4>'+data.obj[i].gearName+'</h4>\n' +
+                        ' <div class="equipmentTag">' + data.obj[i].gearType +
+                        '</div>\n' +
+                        '                <div class="equipmentImg">\n' +
+                        '                    <img alt="' + data.obj[i].gearName + '" height="187" width="187"' +
+                        '                         src="data:image/png;base64,' + data.obj[i].gearImg + '">\n' +
+                        '                </div>\n' +
+                        '            </div>')
+                }
+            }
         }
         , error: function (obj) {
             console.log("请求失败")
@@ -358,45 +319,7 @@
             console.log("请求失败")
         }
     })
-    $.ajax({
-        type: "GET"
-        , url: "http://localhost:8080/proCsgoPcSpecs/getProCsgoPcSpecsById"
-        , dataType: "json"
-        , data: {'proId':proId}
-        , headers: {token: localStorage.getItem("token")}
-        , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
-                $('#pcSpecs').append(' <h3>主机信息</h3>\n' +
-                    '        <div class="equipmentBoxes">\n' +
-                    '            <div class="equipmentBox">\n' +
-                    '                <h4>'+data.obj.psProcessor+'</h4>\n' +
-                    '                <div class="equipmentTag">CPU</div>\n' +
-                    '                <div class="equipmentImg">\n' +
-                    '                    <img alt="AMD Ryzen 9 5950X" height="187" width="187"\n' +
-                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/amd-ryzen-5000-series.png">\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '            <div class="equipmentBox">\n' +
-                    '                <h4>'+data.obj.psGraphicsCard+'</h4>\n' +
-                    '                <div class="equipmentTag">显卡</div>\n' +
-                    '                <div class="equipmentImg">\n' +
-                    '                    <img alt="NVIDIA GeForce RTX 3090" height="187" width="187"\n' +
-                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/nvidia-geforce-rtx-3090.png">\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '            <div class="equipmentBox">\n' +
-                    '                <h4>'+data.obj.psMotherboard+'</h4>\n' +
-                    '                <div class="equipmentTag">主板</div>\n' +
-                    '                <div class="equipmentImg">\n' +
-                    '                    <img alt="GIGABYTE X570 AORUS Ultra" height="187" width="187"\n' +
-                    '                         src="https://prosettings.net/cdn-cgi/image/dpr=1%2Cf=auto%2Cfit=cover%2Cheight=187%2Cq=85%2Cwidth=187/wp-content/uploads/gigabyte-x570-aorus-ultra.png">\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '        </div>')
-        }
-        , error: function (obj) {
-            console.log("请求失败")
-        }
-    })
+
     $.ajax({
         type: "GET"
         , url: "http://localhost:8080/proCsgoVideoSettings/getProCsgoVideoSettingsById"
@@ -407,28 +330,28 @@
                 $('#video').append(' <h4>Video</h4>\n' +
                     '                    <table class="settings">\n' +
                     '                        <tbody>\n' +
-                    '                        <tr class="resolution" data-field="resolution">\n' +
+                    '                        <tr class="resolution">\n' +
                     '                            <th>分辨率</th>\n' +
                     '                            <td>'+data.obj.videoResolution+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="aspectRatio" data-field="aspectRatio">\n' +
+                    '                        <tr class="aspectRatio">\n' +
                     '                            <th>画面比例</th>\n' +
                     '                            <td>'+data.obj.videoAspectRatio+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="scalingMode" data-field="scalingMode">\n' +
+                    '                        <tr class="scalingMode">\n' +
                     '                            <th>缩放模式</th>\n' +
                     '                            <td>'+data.obj.videoScalingMode+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="colorMode" data-field="colorMode">\n' +
+                    '                        <tr class="colorMode">\n' +
                     '                            <th>颜色模式</th>\n' +
                     '                            <td>'+data.obj.videoColorMode+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="brightness" data-field="brightness">\n' +
-                    '                            <th>Brightness</th>\n' +
+                    '                        <tr class="brightness">\n' +
+                    '                            <th>亮度s</th>\n' +
                     '                            <td>'+data.obj.videoBrightness+'</td>\n' +
                     '                        </tr>\n' +
-                    '                        <tr class="displayMode" data-field="displayMode">\n' +
-                    '                            <th>Display Mode</th>\n' +
+                    '                        <tr class="displayMode">\n' +
+                    '                            <th>显示模式</th>\n' +
                     '                            <td>'+data.obj.videoDisplayMode+'</td>\n' +
                     '                        </tr>\n' +
                     '                        </tbody>\n' +
@@ -446,39 +369,39 @@
         , data: {'proId':proId}
         , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
                 $('#viewModelSettings').append(' <tbody>\n' +
-                    '                <tr class="fov" data-field="fov">\n' +
+                    '                <tr class="fov">\n' +
                     '                    <th>FOV</th>\n' +
                     '                    <td>'+data.obj.vlFov+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="offsetX" data-field="offsetX">\n' +
+                    '                <tr class="offsetX">\n' +
                     '                    <th>Offset X</th>\n' +
                     '                    <td>'+data.obj.vlOffsetX+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="offsetY" data-field="offsetY">\n' +
+                    '                <tr class="offsetY">\n' +
                     '                    <th>Offset Y</th>\n' +
                     '                    <td>'+data.obj.vlOffsetY+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="offsetZ" data-field="offsetZ">\n' +
+                    '                <tr class="offsetZ">\n' +
                     '                    <th>Offset Z</th>\n' +
                     '                    <td>'+data.obj.vlOffsetZ+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="presetPos" data-field="presetPos">\n' +
+                    '                <tr class="presetPos">\n' +
                     '                    <th>持枪视角</th>\n' +
                     '                    <td>'+data.obj.vlPresetpos+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="shiftLeftAmt" data-field="shiftLeftAmt">\n' +
+                    '                <tr class="shiftLeftAmt">\n' +
                     '                    <th>Shift Left Amt</th>\n' +
                     '                    <td>'+data.obj.vlShiftLeftAmt+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="shiftRightAmt" data-field="shiftRightAmt">\n' +
+                    '                <tr class="shiftRightAmt">\n' +
                     '                    <th>Shift Right Amt</th>\n' +
                     '                    <td>'+data.obj.vlShiftRightAmt+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="recoil" data-field="recoil">\n' +
+                    '                <tr class="recoil">\n' +
                     '                    <th>Recoil</th>\n' +
                     '                    <td>'+data.obj.vlRecoil+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="rightHand" data-field="rightHand">\n' +
+                    '                <tr class="rightHand">\n' +
                     '                    <th>右手持枪</th>\n' +
                     '                    <td>'+data.obj.vlRighthand+'</td>\n' +
                     '                </tr>\n' +
@@ -496,37 +419,33 @@
         , headers: {token: localStorage.getItem("token")}
         , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
                 $('#mouseSettings').append(' <tbody>\n' +
-                    '                <tr class="dpi" data-field="dpi">\n' +
+                    '                <tr class="dpi">\n' +
                     '                    <th>DPI</th>\n' +
                     '                    <td>'+data.obj.msDpi+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="sensitivity" data-field="sensitivity">\n' +
+                    '                <tr class="sensitivity">\n' +
                     '                    <th>敏感度</th>\n' +
                     '                    <td>'+data.obj.msSensitivity+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="edpi" data-field="edpi">\n' +
+                    '                <tr class="edpi">\n' +
                     '                    <th>eDPI</th>\n' +
                     '                    <td>'+data.obj.msEdpi+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="zoomSensitivity" data-field="zoomSensitivity">\n' +
+                    '                <tr class="zoomSensitivity">\n' +
                     '                    <th>开镜灵敏度</th>\n' +
                     '                    <td>'+data.obj.msZoomSensitivity+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="hz" data-field="hz">\n' +
+                    '                <tr class="hz">\n' +
                     '                    <th>轮询率</th>\n' +
                     '                    <td>'+data.obj.msHz+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="windowsSensitivity" data-field="windowsSensitivity">\n' +
+                    '                <tr class="windowsSensitivity">\n' +
                     '                    <th>Windows桌面灵敏度</th>\n' +
                     '                    <td>'+data.obj.msWindowsSensitivity+'</td>\n' +
                     '                </tr>\n' +
-                    '                <tr class="rawInput" data-field="RawInput">\n' +
+                    '                <tr class="rawInput">\n' +
                     '                    <th>原始输入</th>\n' +
                     '                    <td>'+data.obj.msRawInput+'</td>\n' +
-                    '                </tr>\n' +
-                    '                <tr class="acceleration" data-field="acceleration">\n' +
-                    '                    <th>鼠标加速</th>\n' +
-                    '                    <td>'+data.obj.msMouseAcceleration+'</td>\n' +
                     '                </tr>\n' +
                     '                </tbody>')
         }

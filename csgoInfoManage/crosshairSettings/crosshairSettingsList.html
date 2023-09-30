@@ -21,9 +21,6 @@
     //弹出窗口填充数据的变量
     var row = null;
     var table = null;
-    console.log(window.location.href)
-
-
     layui.use(['table', 'jquery'], function () {
         table = layui.table;
         var $ = layui.jquery;
@@ -33,6 +30,9 @@
             , url: 'http://localhost:8080/proCsgoCrosshairSettings/getProCsgoCrosshairSettingsList'
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , height:'full-10'
+            , limit: 20
+            , limits: [20, 50, 100]
             , defaultToolbar: ['filter']//控制显示哪个默认的工具栏按钮,默认三个
             , page: true
             , headers: {token: localStorage.getItem("token")}
@@ -40,41 +40,13 @@
                 {type: 'checkbox'}
                 , {field: 'proId', title: '编号'}
                 , {field: 'proGameId', title: '游戏ID'}
-                , {
-                    field: 'crDrawoutline', title: '是否启用准星轮廓', templet: function (d) {
-                        //在前端将数据库中的状态码，装化为相应的信息
-                        let ret = ''
-                        switch (d.crDrawoutline) {
-                            case 1:
-                                ret = '开启'
-                                break
-                            case 0:
-                                ret = '禁用'
-                                break
-                        }
-                        return ret
-                    }
-                }
+                , {field: 'crDrawoutline', title: '是否启用准星轮廓'}
                 , {field: 'crAlpha', title: '准星前置选择'}
                 , {field: 'crColor', title: '准星颜色'}
                 , {field: 'crBlue', title: '准星蓝色数值'}
                 , {field: 'crGreen', title: '准星绿色数值'} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
                 , {field: 'crRed', title: '准星红色数值'}
-                , {
-                    field: 'crDot', title: '准星是否启用中心点', templet: function (d) {
-                        //在前端将数据库中的状态码，装化为相应的信息
-                        let ret = ''
-                        switch (d.crDot) {
-                            case 1:
-                                ret = '开启'
-                                break
-                            case 0:
-                                ret = '禁用'
-                                break
-                        }
-                        return ret
-                    }
-                }
+                , {field: 'crDot', title: '准星是否启用中心点'}
                 , {field: 'crGap', title: '准星间隙'}
                 , {field: 'crSize', title: '准星大小'}
                 , {field: 'crStyle', title: '准星风格'}

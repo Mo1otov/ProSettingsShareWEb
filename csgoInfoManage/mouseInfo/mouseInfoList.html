@@ -35,6 +35,8 @@
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter']//控制显示哪个默认的工具栏按钮,默认三个
             , page: true
+            , limit: 20
+            , limits: [20, 50, 100]
             , headers: {token: localStorage.getItem("token")}
             , cols: [[
                 {type: 'checkbox'}
@@ -47,36 +49,7 @@
                 , {field: 'msZoomSensitivity', title: '鼠标开镜灵敏度'} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
                 , {field: 'msHz', title: '鼠标轮询率'}
                 , {field: 'msWindowsSensitivity', title: 'windows桌面鼠标灵敏度'}
-                , {
-                    field: 'msRawInput', title: '是否开启原始输入', templet: function (d) {
-                        //在前端将数据库中的状态码，装化为相应的信息
-                        let ret = ''
-                        switch (d.msRawInput) {
-                            case 1:
-                                ret = '开启'
-                                break
-                            case 0:
-                                ret = '禁用'
-                                break
-                        }
-                        return ret
-                    }
-                }
-                , {
-                    field: 'msMouseAcceleration', title: '是否开启鼠标加速', templet: function (d) {
-                        //在前端将数据库中的状态码，装化为相应的信息
-                        let ret = ''
-                        switch (d.msMouseAcceleration) {
-                            case 1:
-                                ret = '开启'
-                                break
-                            case 0:
-                                ret = '禁用'
-                                break
-                        }
-                        return ret
-                    }
-                }
+                , {field: 'msRawInput', title: '是否开启原始输入'}
             ]]
         });
 

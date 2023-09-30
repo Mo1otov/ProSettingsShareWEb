@@ -7,15 +7,21 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>职业选手基本信息列表</title>
     <link href="../layui/css/layui.css" rel="stylesheet">
+    <style type="text/css">
+        .layui-table-cell{
+            height: auto;
+        }
+        .layui-table img{
+            max-width:100%
+        }
+    </style>
 </head>
-
 <body>
 <table class="layui-hide" id="test" lay-filter="test"></table>
 <script id="toolbarDemo" type="text/html">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
         <button class="layui-btn layui-btn-sm" lay-event="edit">修改</button>
-        <button class="layui-btn layui-btn-sm" lay-event="search" style="background-color: #1e9fff">查看CSGO信息</button>
         <button class="layui-btn layui-btn-sm" lay-event="delete" style="background-color: red">删除</button>
     </div>
 </script>
@@ -24,9 +30,6 @@
     //弹出窗口填充数据的变量
     var row = null;
     var table = null;
-    console.log(window.location.href)
-
-
     layui.use(['table', 'jquery'], function () {
         table = layui.table;
         var $ = layui.jquery;
@@ -35,6 +38,7 @@
             elem: '#test'
             , url: 'http://localhost:8080/proBasicInfo/getProBasicInfoList'
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , height:'full-10'
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter']//控制显示哪个默认的工具栏按钮,默认三个
             , page: true
@@ -43,11 +47,14 @@
                 {type: 'checkbox'}
                 , {field: 'proId', title: '编号'}
                 , {field: 'proGameId',title: '游戏昵称'}
+                , {
+                field: 'proImg',title: '选手照片',templet:function (d){
+                        return '<img src="data:image/png;base64,' + d.proImg+'"/>'
+                    }}
                 , {field: 'proClan', title: '所属战队'}
                 , {field: 'proCountry', title: '国籍'}
                 , {field: 'proName', title: '姓名'}
                 , {field: 'proBirthday', title: '生日'} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                , {field: 'proPlayGame', title: '参与的游戏'}
                 , {field: 'proProfile',  title: '简介'}
             ]]
         });
@@ -123,25 +130,6 @@
                             })
                             layer.close(index);
                         });
-                    }
-                    break;
-                case 'contact':
-                    if (data.length == 0) {
-                        layer.msg("请选择要查看的行")
-                    } else if (data.length > 1) {
-                        layer.msg("一次只能查看一个客户")
-                    } else {
-                        window.location.href = '../contact/contactlist.html?cusId=' + data[0].cusId
-                    }
-                    break;
-
-                case 'businessrecord':
-                    if (data.length == 0) {
-                        layer.msg("请选择要查看的行")
-                    } else if (data.length > 1) {
-                        layer.msg("一次只能查看一个客户")
-                    } else {
-                        window.location.href = '../businessRecord/businessRecordList.html?cusId=' + data[0].cusId
                     }
                     break;
             }
