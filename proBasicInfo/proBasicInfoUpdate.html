@@ -11,13 +11,22 @@
 
 <body style="padding: 25px;">
 
-<form class="layui-form" lay-filter="updateProBasicInfoForm">
-    <!-- 用隐藏的输入框保存主键（客户编号），后台做更新时候要根据主键做update -->
+<form class="layui-form" lay-filter="updateProBasicInfoForm" id="proBasicInfoForm">
     <input name="proId" type="hidden"/>
     <div class="layui-form-item"><label class="layui-form-label">游戏昵称</label>
         <div class="layui-input-block">
             <input autocomplete="off" class="layui-input" name="proGameId" placeholder="请输入选手游戏昵称" type="text">
         </div>
+    </div>
+    <div class="layui-form-item"><label class="layui-form-label">选手照片</label>
+        <div class="layui-input-block">
+            <div class="layui-upload"> <button type="button" class="layui-btn" id="uploadProImg">上传图片</button>
+                <input type="hidden" id="img_url" name="proImg" value=""/>
+                <div class="layui-upload-list">
+                    <img class="layui-upload-img" id="proImg">
+                </div>
+        </div>
+    </div>
     </div>
     <div class="layui-form-item"><label class="layui-form-label">所属战队</label>
         <div class="layui-input-block">
@@ -59,10 +68,55 @@
 
 <script src="../layui/layui.js"></script>
 <script>
-    layui.use(['form', 'jquery', 'laydate'], function () {
+    layui.use(['form', 'jquery', 'element', 'laydate','upload','layer'], function () {
         var form = layui.form;
         var $ = layui.jquery;
         let layDate = layui.laydate;
+        var element = layui.element;
+        var upload = layui.upload;
+        var layer = layui.layer;
+
+        //常规使用 - 普通图片上传
+        var imgResult;
+        var uploadInst = upload.render({
+            elem: '#uploadProImg'
+            ,url: 'https://httpbin.org/post'
+            ,size:50
+            ,accept: 'images'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    imgResult = result;
+                    $('#proImg').attr('src', result); //图片链接（base64）
+                });
+                element.progress('demo', '0%'); //进度条复位
+                layer.msg('上传中', {icon: 16, time: 0});
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                document.getElementById("img_url").value = imgResult
+                $('#demoText').html(''); //置空上传失败的状态
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+            //进度条
+            ,progress: function(n, elem, e) {
+                element.progress('demo', n + '%'); //可配合 layui 进度条元素使用
+                if (n === 100) {
+                    layer.msg('上传完毕', {icon: 1});
+                }
+            }
+        });
+
         //日期时间选择器
         layDate.render({
             elem: '#test5'
@@ -72,10 +126,10 @@
         });
         //给表单填充内容
         form.val('updateProBasicInfoForm', parent.row);
-        console.log(parent.row)
+        $('#proImg').attr('src', "data:image/png;base64,"+parent.row.proImg); //图片链接（base64）
+
         //监听提交
         form.on('submit(submitProBasicInfoUpdate)', function (data) {
-            console.log(data.field)
             //异步（ajax）提交
             $.ajax({
                 type: "post"
@@ -98,5 +152,4 @@
     })
 </script>
 </body>
-
 </html>

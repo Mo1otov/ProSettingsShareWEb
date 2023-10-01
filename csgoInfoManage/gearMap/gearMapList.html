@@ -72,7 +72,7 @@
                         //弹出窗口
                         layer.open({
                             type: 2 //此处以iframe举例
-                            , title: '修改选手基本信息'
+                            , title: '修改外设映射信息'
                             , area: ['450px', '500px']
                             , shade: 0.3   //背景透明度，取值范围0~1
                             , maxmin: true  //窗口是否允许最大化和最小化
@@ -80,14 +80,14 @@
                                 ($(window).height() - 450) / 2
                                 , ($(window).width() - 500) / 2
                             ]
-                            , content: 'proBasicInfoUpdate.html' //弹出窗口的页面内容
+                            , content: 'gearMapUpdate.html' //弹出窗口的页面内容
                         });
                     }
                     break;
                 case 'add':
                     layer.open({
                         type: 2 //此处以iframe举例
-                        , title: '新增选手基本信息'
+                        , title: '新增外设映射信息'
                         , area: ['450px', '500px']
                         , shade: 0.3   //背景透明度，取值范围0~1
                         , maxmin: true  //窗口是否允许最大化和最小化
@@ -95,12 +95,12 @@
                             ($(window).height() - 450) / 2
                             , ($(window).width() - 500) / 2
                         ]
-                        , content: 'proBasicInfoAdd.html' //弹出窗口的页面内容
+                        , content: 'gearMapAdd.html' //弹出窗口的页面内容
                     });
                     break;
                 case 'delete':
                     var data1 = checkStatus.data;
-                    if (data1.length == 0) {
+                    if (data1.length === 0) {
                         layer.msg("请选择要删除的行")
                     } else {
                         layer.confirm('确定要删除选中的行吗？', function (index) {
@@ -108,13 +108,13 @@
 
                             let arr = []
                             for (let i = 0; i < data1.length; i++) {
-                                let proIds = data1[i].proId
-                                arr.push(proIds)
+                                let gearIds = data1[i].gearId
+                                arr.push(gearIds)
                             }
                             //do something
                             $.ajax({
                                 type: "post"
-                                , url: "http://localhost:8080/proBasicInfo/deleteProBasicInfo"
+                                , url: "http://localhost:8080/gearMap/deleteGearMapInfo"
                                 , dataType: "json"
                                 , headers: {token: localStorage.getItem("token")}
                                 , data: {

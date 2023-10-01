@@ -45,7 +45,7 @@
             , headers: {token: localStorage.getItem("token")}
             , cols: [[
                 {type: 'checkbox'}
-                , {field: 'proId', title: '编号'}
+                , {field: 'proId', title: '选手编号'}
                 , {field: 'proGameId',title: '游戏昵称'}
                 , {
                 field: 'proImg',title: '选手照片',templet:function (d){
@@ -103,7 +103,7 @@
                     break;
                 case 'delete':
                     var data1 = checkStatus.data;
-                    if (data1.length == 0) {
+                    if (data1.length === 0) {
                         layer.msg("请选择要删除的行")
                     } else {
                         layer.confirm('确定要删除选中的行吗？', function (index) {
