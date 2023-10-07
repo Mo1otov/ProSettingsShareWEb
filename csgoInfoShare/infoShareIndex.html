@@ -8,10 +8,10 @@
     <script src="../layui/layui.js"></script>
 </head>
 <body>
-<div class="container" id="container">
-</div>
+    <div class="container" id="container">
+    </div>
 <script type="text/javascript">
-    layui.use("jquery")
+    layui.use('jquery')
     var $ = layui.jquery;
     $.ajax({
         type: "GET"
@@ -21,14 +21,14 @@
         , success: function (data) {//后台方法成功执行并返回结果时，会调用这个方法，参数是后台返回的内容
             for (let i = 0; i < data.data.length; i++) {
                 $('#container').append(' <div class="infoBox">\n' +
-                    '    <a id="proInfo" href="infoShare.html?proId='+data.data[i].proId+'">\n' +
+                    '    <a id="proInfo" href="infoShare.html?proId=' + data.data[i].proId + '">\n' +
                     '        <div class="contentbox">\n' +
                     '            <div class="imgBx">\n' +
-                    '                <img id="proImg" src="data:image/png;base64,' + data.data[i].proImg+'" alt="">\n' +
+                    '                <img id="proImg" src="data:image/png;base64,' + data.data[i].proImg + '" alt="">\n' +
                     '            </div>\n' +
                     '            <div class="textBox">\n' +
-                    '                <h3 id="proName">'+data.data[i].proGameId+'</h3>\n' +
-                    '                <h4 id="proTeam">'+data.data[i].proClan+'</h4>\n' +
+                    '                <h3 id="proName">' + data.data[i].proGameId + '</h3>\n' +
+                    '                <h4 id="proTeam">' + data.data[i].proClan + '</h4>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '    </a>\n' +
